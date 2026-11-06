@@ -5,5 +5,4 @@ node_modules/
 *.log
 coverage/
 
-# Isolamento das credenciais do clone
-ordem-config.js
+# A chave publishable do Supabase e publica e deve ser publicada com o site.

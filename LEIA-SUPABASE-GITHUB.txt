@@ -1,0 +1,11 @@
+CORRECAO DO MODO LOCAL NO GITHUB PAGES
+
+O arquivo ordem-config.js ja esta preenchido com URL e chave publishable do seu Supabase.
+A regra que ignorava ordem-config.js foi removida do .gitignore.
+
+Publique o CONTEUDO da pasta skill-tree-rpg na RAIZ do repositorio GitHub (index.html e ordem-config.js lado a lado).
+Se usa git: git add -f ordem-config.js e commit/push. Se usa upload pelo GitHub, envie ordem-config.js explicitamente.
+Aguarde o Pages publicar e verifique https://nnevos.github.io/OrdemFichas/ordem-config.js (deve abrir JS, nao 404).
+Exporte backup JSON das fichas locais ANTES de conectar. Nao limpe localStorage.
+Se continuar em modo local, confira o console do navegador e as permissoes RLS das tabelas ordem_campaigns e ordem_characters.
+A chave publishable nao e segredo. Nunca coloque service_role/secret no site.
