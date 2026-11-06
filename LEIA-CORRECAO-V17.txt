@@ -1,0 +1,16 @@
+CORRECAO V17 - IMPORTACAO E VINCULO COM CATALOGO
+
+1. Substitua os arquivos do GitHub pelos arquivos da pasta skill-tree-rpg.
+2. Abra o site e atualize com Ctrl+Shift+R.
+3. As fichas existentes sao enriquecidas na leitura, sem necessidade de reimportar.
+4. Os catalogos estao nos arquivos ordem/abilities.mjs e ordem/catalog.mjs,
+   NAO em tabelas do Supabase. Supabase armazena fichas e campanhas.
+5. As habilidades cujo catalogo nao tem descricao permanecem sem descricao.
+   Exemplo: Envolto em Misterio, Fluxo de Poder e Acalentar estao vazios
+   no catalogo distribuido. Nao inventamos o texto oficial.
+6. A habilidade personalizada 'jericho' nao tem entrada no catalogo.
+7. Rituais sao associados por nome e elemento. Dados manuais ja preenchidos
+   sao preservados. Variantes ambiguas exigem escolha do elemento.
+8. Antes de excluir qualquer ficha, exporte um backup JSON.
+
+Esta versao nao adiciona tabelas nem altera as permissoes do Supabase.

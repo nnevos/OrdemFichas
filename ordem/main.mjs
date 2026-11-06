@@ -9,7 +9,9 @@ const $=id=>document.getElementById(id);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const attr=s=>esc(s);
 const opts=(values,active,placeholder='Selecionar')=>`<option value="">${esc(placeholder)}</option>`+values.map(v=>{const val=typeof v==='string'?v:v.value,label=typeof v==='string'?v:v.label;return `<option value="${attr(val)}" ${String(val)===String(active)?'selected':''}>${esc(label)}</option>`}).join('');
-const clean=t=>String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR').trim();
+const clean=t=>String(t||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase('pt-BR').replace(/[^a-z0-9]+/g,' ').trim().replace(/\s+/g,' ');
+const abilityAlias=name=>clean(name).replace(/^nex\s*\d+\s*ampliar ritual$/, 'ampliar ritual');
+const filled=v=>v!==undefined&&v!==null&&String(v).trim()!=='';
 const numeric=(x,def=0)=>Number.isFinite(Number(x))?Math.trunc(Number(x)):def;
 const uid=()=>globalThis.crypto?.randomUUID?.()||`00000000-0000-4000-8000-${Math.random().toString(16).slice(2,14).padEnd(12,'0')}`;
 let ritualModal={open:false,search:'',element:'Todos',circle:0,expanded:''};
@@ -51,23 +53,31 @@ export function completeWeaponData(item){
 }
 // Enrich imported legacy entries with the local rules catalogue without replacing user edits.
 function restoreCharacterCatalog(c){
+ if(!c||typeof c!=='object')return c;
  if(Array.isArray(c.items))c.items=c.items.map(completeWeaponData);
  if(Array.isArray(c.abilities))c.abilities=c.abilities.map(a=>{
-  if(!a||typeof a!== 'object')return a;
-  const match=ABILITY_CATALOG.find(x=>(a.catalogId&&x.id===a.catalogId)||clean(x.name)===clean(a.name));
-  if(!match)return a;
-  return {...a,catalogId:a.catalogId||match.id,group:a.group||match.group,track:a.track||match.track,description:a.description||match.description||'',page:a.page||match.page};
+  if(!a||typeof a!=='object')return a;
+  const candidates=ABILITY_CATALOG.filter(x=>clean(x.name)===abilityAlias(a.name));
+  const match=candidates.find(x=>a.catalogId&&x.id===a.catalogId)
+    ||candidates.find(x=>a.group&&clean(x.group)===clean(a.group)&&(!a.track||clean(x.track)===clean(a.track)))
+    ||(candidates.length===1?candidates[0]:null);
+  if(!match)return {...a,catalogStatus:candidates.length?'ambiguous':'missing'};
+  const merged={...a,catalogId:match.id,catalogStatus:filled(match.description)?'complete':'no-description'};
+  for(const key of ['group','track','description','page'])if(!filled(merged[key])&&filled(match[key]))merged[key]=match[key];
+  return merged;
  });
  if(Array.isArray(c.rituals))c.rituals=c.rituals.map(r=>{
   if(!r||typeof r!=='object')return r;
-  const candidates=RITUALS.filter(x=>(r.catalogId&&x.id===r.catalogId)||clean(x.name)===clean(r.name));
-  const match=candidates.find(x=>r.catalogId&&x.id===r.catalogId)||candidates.find(x=>r.element&&clean(x.element)===clean(r.element))||(candidates.length===1?candidates[0]:null);
-  if(!match)return {...r,needsCatalogSelection:candidates.length>1};
+  const candidates=RITUALS.filter(x=>clean(x.name)===clean(r.name));
+  const match=candidates.find(x=>r.catalogId&&x.id===r.catalogId)
+    ||candidates.find(x=>r.element&&clean(x.element)===clean(r.element))
+    ||(candidates.length===1?candidates[0]:null);
+  if(!match)return {...r,catalogStatus:candidates.length?'ambiguous':'missing',needsCatalogSelection:candidates.length>1};
   const verified=createFromCatalog('rituals',match.id);
   if(!verified)return r;
-  const merged={...r,catalogId:r.catalogId||match.id,needsCatalogSelection:false};
+  const merged={...r,catalogId:match.id,catalogStatus:'matched',needsCatalogSelection:false};
   for(const key of ['summary','casting','range','target','area','duration','resistance','damage','discenteDamage','verdadeiroDamage','element','circle']){
-   if(merged[key]===undefined||merged[key]===null||merged[key]==='')merged[key]=verified[key];
+   if(!filled(merged[key])&&filled(verified[key]))merged[key]=verified[key];
   }
   return merged;
  });
