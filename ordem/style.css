@@ -273,3 +273,6 @@ body.op-modal-open{overflow:hidden}
 
 /* v13: ritual damage readable at a glance, matching compact weapon rows */
 .op-ritual-damage{display:flex;flex-wrap:wrap;gap:6px 14px;margin:3px 0 2px 24px}.op-ritual-damage span{display:inline-flex;flex-direction:row;gap:5px;min-width:0;align-items:baseline}.op-ritual-damage b{font-size:11px;color:#b57cdb}.op-ritual-damage strong{font-size:12px;color:#f4eef7}.op-ritual-damage .op-ritual-no-damage{color:#9f96a5;font-size:11px}
+
+/* v19: retrato compartilhado do personagem */
+.op-portrait{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}.op-photo-picker{display:flex;align-items:center;flex-wrap:wrap;gap:10px}.op-photo-picker input[type=file]{max-width:220px;font-size:12px}.op-photo-picker small{flex-basis:100%;color:#b5aab6}.op-dossier-avatar{overflow:hidden;flex-shrink:0}.op-agent-avatar{overflow:hidden}
