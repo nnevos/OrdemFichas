@@ -49,7 +49,29 @@ export function completeWeaponData(item){
  if(!merged.catalogId)merged.catalogId=base.id;
  return merged;
 }
-function restoreCharacterCatalog(c){if(Array.isArray(c.items))c.items=c.items.map(completeWeaponData);return c}
+// Enrich imported legacy entries with the local rules catalogue without replacing user edits.
+function restoreCharacterCatalog(c){
+ if(Array.isArray(c.items))c.items=c.items.map(completeWeaponData);
+ if(Array.isArray(c.abilities))c.abilities=c.abilities.map(a=>{
+  if(!a||typeof a!== 'object')return a;
+  const match=ABILITY_CATALOG.find(x=>(a.catalogId&&x.id===a.catalogId)||clean(x.name)===clean(a.name));
+  if(!match)return a;
+  return {...a,catalogId:a.catalogId||match.id,group:a.group||match.group,track:a.track||match.track,description:a.description||match.description||'',page:a.page||match.page};
+ });
+ if(Array.isArray(c.rituals))c.rituals=c.rituals.map(r=>{
+  if(!r||typeof r!=='object')return r;
+  const match=RITUALS.find(x=>(r.catalogId&&x.id===r.catalogId)||clean(x.name)===clean(r.name));
+  if(!match)return r;
+  const verified=createFromCatalog('rituals',match.id);
+  if(!verified)return r;
+  const merged={...r,catalogId:r.catalogId||match.id};
+  for(const key of ['summary','casting','range','target','area','duration','resistance','damage','discenteDamage','verdadeiroDamage','element','circle']){
+   if(merged[key]===undefined||merged[key]===null||merged[key]==='')merged[key]=verified[key];
+  }
+  return merged;
+ });
+ return c;
+}
 const diceNotation=(attribute,bonus=0)=>`${numeric(attribute)===0?'2d20 (menor)':`${numeric(attribute)}d20 (maior)`}${bonus?` ${cap(bonus)}`:''}`;
 
 function renderCampaigns(){
@@ -65,8 +87,8 @@ function render(){ensure();$('op-storage-label').textContent=shared?'Sincroniza�
  renderSidebar();if(view==='wizard'&&draft){$('op-hero').innerHTML='';$('op-tabs').innerHTML='';$('op-content').innerHTML=renderWizard(draft,wizardStep);return}if(view==='master'){renderMaster();return}const c=active();if(!c){$('op-hero').innerHTML='<div class="op-master-heading"><h2>Nenhuma ficha ainda</h2><p>Crie a primeira ficha desta campanha.</p></div>';$('op-tabs').innerHTML='';$('op-content').innerHTML='<div class="op-empty">Use o botão “+ Nova ficha” na lateral para começar.</div>';return}const d=derive(c);renderHero(c,d);
 }
 async function refreshRemote(){if(!shared||remoteLoading)return;const editing=document.activeElement?.matches?.('input,textarea,select');if(editing){clearTimeout(init.refresh);init.refresh=setTimeout(refreshRemote,1200);return}remoteLoading=true;try{const loaded=await shared.load();state.campaigns=loaded.campaigns;state.characters=loaded.characters.map(restoreCharacterCatalog);ensure();persist();render();}catch(e){syncError(e)}finally{remoteLoading=false}}
-async function init(){read();ensure();const cfg=globalThis.ORDEM_SUPABASE_CONFIG;try{shared=await createSharedStore(cfg,()=>{clearTimeout(init.refresh);init.refresh=setTimeout(refreshRemote,160)},s=>{if($('op-save-status'))$('op-save-status').textContent=s});if(shared){const data=await shared.load();state.campaigns=data.campaigns;state.characters=data.characters;state.active='';state.activeCampaign='';shared.subscribe();}}catch(e){shared=null;syncError(e);toast('Modo local: Supabase não disponível.')}ready=true;render()}
-function renderSidebar(){const c=active();$('character-list').innerHTML=campaignChars().map(item=>`<button class="op-agent ${item.id===c?.id?'is-active':''}" data-action="select" data-id="${attr(item.id)}"><span class="op-agent-avatar">${esc((item.icon||item.name||'?').trim().slice(0,3))}</span><span><strong>${esc(item.name||'Sem nome')}</strong><small>${esc(CLASSES[item.classId]?.title||'Agente')} · NEX ${esc(item.nex)}%</small></span><span class="op-agent-arrow">›</span></button>`).join('')}
+async function init(){read();ensure();const cfg=globalThis.ORDEM_SUPABASE_CONFIG;try{shared=await createSharedStore(cfg,()=>{clearTimeout(init.refresh);init.refresh=setTimeout(refreshRemote,160)},s=>{if($('op-save-status'))$('op-save-status').textContent=s});if(shared){const data=await shared.load();state.campaigns=data.campaigns;state.characters=data.characters.map(restoreCharacterCatalog);state.active='';state.activeCampaign='';shared.subscribe();}}catch(e){shared=null;syncError(e);toast('Modo local: Supabase não disponível.')}ready=true;render()}
+function renderSidebar(){const c=active();$('character-list').innerHTML=campaignChars().map(item=>`<button class="op-agent ${item.id===c?.id?'is-active':''}" data-action="select" data-id="${attr(item.id)}"><span class="op-agent-avatar">${esc((item.icon||item.name||'?').trim().slice(0,3))}</span><span><strong>${esc(item.name||'Sem nome')}</strong><small>${esc(CLASSES[item.classId]?.title||'Agente')} · NEX ${esc(item.nex)}%</small></span><span class="op-agent-arrow">›</span></button>`).join('')+ (c?`<button class="op-btn op-btn-danger" data-action="delete" title="Excluir ficha selecionada" style="margin:12px 8px;width:calc(100% - 16px)">Excluir ficha de ${esc(c.name||'agente')}</button>`:'')}
 function renderHero(c,d){if(tab==='ficha'){$('op-hero').innerHTML='';}const milestones=d.milestones;const faults=validate(c);if(tab!=='ficha')$('op-hero').innerHTML=`<div class="op-hero"><div class="op-hero-back"><div class="op-hero-kicker">DOSSIÊ DE AGENTE <span> / REGISTRO ${esc(c.id.slice(0,8).toUpperCase())}</span></div><div class="op-hero-grid"><div><h2>${esc(c.name||'Novo Agente')}</h2><p>${esc(originOf(c.origin)?.name||'Origem não escolhida')} <span>•</span> ${esc(CLASSES[c.classId]?.title)} ${c.track?'<span>•</span> '+esc(c.track):''}</p></div><div class="op-nex-pill"><small>EXPOSIÇÃO PARANORMAL</small><strong>${esc(c.nex)}<span>%</span></strong></div></div></div><div class="op-meter-grid">${[['pv','PONTOS DE VIDA','♥',d.pv],['pe','PONTOS DE ESFORÇO','✦',d.pe],['san','SANIDADE','◉',d.san]].map(([key,label,icon,max])=>`<div class="op-meter ${key}"><div class="op-meter-heading"><span>${icon} ${label}</span><small>${d.current[key]}/${max}</small></div><div class="op-progress"><i style="width:${Math.min(100,max?d.current[key]/max*100:0)}%"></i></div><div class="op-meter-controls"><button data-action="resource" data-mode="spend" data-resource="${key}" aria-label="Gastar ${label}">−</button><input type="number" min="0" step="1" data-resource-amount="${key}" value="1" aria-label="Quantidade"><button data-action="resource" data-mode="recover" data-resource="${key}" aria-label="Recuperar ${label}">+</button></div></div>`).join('')}</div></div>`;
  const tabs=[['ficha','◈ Ficha completa'],['cadastro','✎ Dados e atributos'],['combate','⚔ Ataques'],['habilidades','✦ Habilidades'],['pericias','✎ Editar perícias'],['progressao','↑ Poderes e NEX'],['inventario','+ Equipamentos'],['rituais','+ Rituais'],['anotacoes','✎ Anotações'],['guia','? Referências']];
  $('op-tabs').innerHTML='<span class="op-dossier-nav-note">Ficha única · use os botões de editar em cada seção</span>';
@@ -97,7 +119,7 @@ function renderCompleteSheet(c,d,faults){
     ${open?`<div class="op-weapon-edit-grid">${[['name','Nome'],['damage','Dano'],['critical','Crítico'],['range','Alcance'],['damageType','Tipo de dano'],['category','Categoria'],['space','Espaços'],['qty','Quantidade'],['notes','Anotações']].map(([k,l])=>`<label>${l}<input ${['category','space','qty'].includes(k)?'type="number" inputmode="numeric"':'type="text"'} data-collection="items" data-i="${i}" data-key="${k}" value="${attr(details[k]??'')}"></label>`).join('')}</div><button class="op-btn op-btn-danger" data-action="remove-item" data-i="${i}">Remover arma</button>`:''}
   </article>`}).join('');
  const powers=(c.powers||[]).map((x,i)=>({value:x,index:i})).filter(x=>x.value?.trim()).map(x=>`<div class="op-dossier-entry op-editable-summary"><strong>${esc(x.value)}</strong><button class="op-quick-remove" data-action="remove-power" data-i="${x.index}" aria-label="Remover poder ${attr(x.value)}">Remover</button></div>`).join('');
- const abilities=(c.abilities||[]).map((x,i)=>({...x,_index:i})).filter(x=>x.name?.trim()).map(x=>`<details class="op-dossier-entry op-ability-record"><summary><strong>${esc(x.name)}</strong><small>${esc(x.track||x.group||'Habilidade')}</small></summary>${x.description?`<p>${esc(x.description)}</p>`:''}${x.notes?`<p>${esc(x.notes)}</p>`:''}<div class="op-summary-actions"><button class="op-btn op-btn-subtle" data-action="tab" data-tab="habilidades">Editar</button><button class="op-btn op-btn-danger" data-action="remove-ability" data-i="${x._index}">Remover</button></div></details>`).join('');
+ const abilities=(c.abilities||[]).map((x,i)=>({...x,_index:i})).filter(x=>x.name?.trim()&&clean(x.name)!==clean(originOf(c.origin)?.power)).map(x=>`<details class="op-dossier-entry op-ability-record"><summary><strong>${esc(x.name)}</strong><small>${esc(x.track||x.group||'Habilidade')}</small></summary>${x.description?`<p>${esc(x.description)}</p>`:''}${x.notes?`<p>${esc(x.notes)}</p>`:''}<div class="op-summary-actions"><button class="op-btn op-btn-subtle" data-action="tab" data-tab="habilidades">Editar</button><button class="op-btn op-btn-danger" data-action="remove-ability" data-i="${x._index}">Remover</button></div></details>`).join('');
  const rituals=(c.rituals||[]).map((r,i)=>({...r,_index:i})).filter(r=>r.name?.trim()).map(r=>{
   const i=r._index,open=expandedRituals.has(i),editing=editingRituals.has(i);
   const ritualStats=ritualDamageData(r);const variants=[['Normal',ritualStats.damage],['Discente',ritualStats.discenteDamage],['Verdadeiro',ritualStats.verdadeiroDamage]].filter(([,value])=>String(value||'').trim());
@@ -224,7 +246,7 @@ function onClick(e){if(e.target?.matches?.('[data-modal-overlay]')){ritualModal.
  if(action==='close-editor'){editorModal='';refreshEditorModal();return}
  if(action==='select'){state.active=button.dataset.id;view='sheets';tab='ficha';persist();render();return}
  if(action==='new'){if(!campaign())return;draft=createDraft(state.activeCampaign,uid());wizardStep=0;view='wizard';render();window.scrollTo?.(0,0);return}
- if(action==='delete'){if(!confirm(`Excluir definitivamente ${c.name}? Exporte antes para manter um backup.`))return;state.characters=state.characters.filter(x=>x.id!==c.id);state.active=campaignChars()[0]?.id||'';persist();render();if(shared)enqueue(c.id,()=>shared.deleteCharacter(c.id));toast('Ficha excluída');return}
+ if(action==='delete'){if(prompt(`EXCLUSÃO DEFINITIVA para todos os jogadores. Digite o nome exato da ficha (${c.name}) para confirmar:`)!==c.name)return;state.characters=state.characters.filter(x=>x.id!==c.id);state.active=campaignChars()[0]?.id||'';persist();render();if(shared)enqueue(c.id,()=>shared.deleteCharacter(c.id));toast('Ficha excluída');return}
  if(action==='resource'){const r=button.dataset.resource,n=numeric(document.querySelector(`[data-resource-amount="${r}"]`)?.value,1);if(n<=0){toast('Digite uma quantidade positiva');return}Object.assign(c,button.dataset.mode==='recover'?recover(c,r,n):spend(c,r,n));commit();return}
  if(action==='nex'){Object.assign(c,changeNex(c,numeric(button.dataset.nex)));commit();return}
 
