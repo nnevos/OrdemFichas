@@ -1,0 +1,9 @@
+CORRECAO V16
+
+1. Substitua os arquivos do site pelos arquivos desta pasta.
+2. Importe o JSON severino-importacao-corrigida-v16.json (fornecido separadamente).
+3. Nao importe repetidamente sem remover a ficha duplicada anterior.
+4. Amaldicoar Arma tem variantes por elemento: informe qual o elemento usado para associacao correta.
+5. O catalogo interno nao contem descricoes completas de todas as habilidades. Quando faltar, a interface mostra aviso em vez de fingir que houve importacao.
+6. Armas ficam apenas no inventario; ataques manuais duplicados foram removidos do JSON corrigido.
+7. Nenhuma alteracao de SQL necessaria.
