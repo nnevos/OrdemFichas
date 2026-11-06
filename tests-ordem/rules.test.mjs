@@ -20,7 +20,11 @@ test('Exceder dobro da carga gera aviso no modo livre',()=>{const c=mk({attrs:{a
 test('Rolar atributo zero escolhe o menor de dois d20',()=>{const seq=[17,4];const r=rollPool(0,5,0,()=>seq.shift());assert.deepEqual(r.dice,[17,4]);assert.equal(r.total,9);assert.equal(r.keep,'menor')});
 test('Rolar atributo positivo seleciona o maior',()=>{const seq=[2,19,7];const r=rollPool(3,10,0,()=>seq.shift());assert.equal(r.total,29)});
 test('Reduzir e recuperar PE respeita os maximos',()=>{const c=mk();c.current={pv:null,pe:null,san:null};const spent=spend(c,'pe',2);assert.equal(derive(spent).current.pe,2);assert.equal(derive(recover(spent,'pe',100)).current.pe,4)});
-test('Mudanca de NEX nao reescreve recurso atual',()=>{const c=mk({current:{pv:3,pe:1,san:5}});const u=changeNex(c,20);assert.deepEqual(derive(u).current,{pv:3,pe:1,san:5});assert.equal(derive(u).pv,21+3*5)});
+test('Subir NEX concede ganhos de PV, PE e SAN sem apagar perdas anteriores',()=>{const c=mk({current:{pv:3,pe:1,san:5}});const a=derive(c);const u=changeNex(c,20);const b=derive(u);assert.deepEqual(b.current,{pv:3+b.pv-a.pv,pe:1+b.pe-a.pe,san:5+b.san-a.san});assert.equal(b.pv,21+3*5);assert.equal(b.limitPE,4)});
+test('Subir NEX com recursos cheios mantém recursos cheios',()=>{const c=mk();const u=changeNex(c,15);const d=derive(u);assert.deepEqual(d.current,{pv:d.pv,pe:d.pe,san:d.san})});
+test('Subir NEX preserva ajustes manuais e origem',()=>{const c=mk({classId:'ocultista',origin:'Universitário',extraPV:20,extraPE:4,extraSAN:8,current:{pv:15,pe:3,san:12}});const a=derive(c);const u=changeNex(c,25);const b=derive(u);assert.deepEqual([u.extraPV,u.extraPE,u.extraSAN],[20,4,8]);for(const k of ['pv','pe','san'])assert.equal(b.current[k],a.current[k]+b[k]-a[k])});
+test('Reduzir NEX não cura e respeita novos máximos',()=>{const c=mk({nex:20,current:{pv:31,pe:10,san:9}});const u=changeNex(c,5);const d=derive(u);assert.deepEqual(d.current,{pv:21,pe:4,san:9})});
+test('Manter mesmo NEX não altera ficha',()=>{const c=mk({current:{pv:1,pe:2,san:3}});assert.equal(changeNex(c,5),c)});
 test('Mudanca para NEX invalido e bloqueada',()=>assert.throws(()=>changeNex(mk(),11),/NEX/));
 test('Limite de atributos avanca em quatro marcos',()=>{assert.equal(attrBudget(mk()),9);assert.equal(attrBudget(mk({nex:99})),13)});
 test('Excesso de atributos gera aviso no modo livre',()=>{const c=mk({attrs:{agi:5,for:5,int:5,pre:5,vig:5}});assert.ok(validate(c).warnings.length>0)});

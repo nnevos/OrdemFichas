@@ -1,0 +1,18 @@
+ARQUIVO DA ORDEM v20 - PROGRESSAO AUTOMATICA POR NEX
+
+Ao aumentar o NEX no cadastro ou na aba Progressao:
+- Recalcula os valores maximos de PV, PE e SAN de acordo com classe, Vigor, Presenca, origem e ajustes manuais.
+- Soma o ganho dos maximos aos recursos atuais, preservando perdas/gastos anteriores.
+- Recalcula o limite de PE por turno, circulo de rituais, marcos de progressao, defesa e demais valores derivados.
+- Nao escolhe poderes, trilhas, pericias ou atributos automaticamente: essas escolhas dependem do jogador.
+- Ao reduzir NEX, limita os recursos ao novo maximo sem curar o personagem.
+
+Exemplo: um combatente com PV maximo 21 e atual 10 passa a ter PV maximo 26 e atual 15 ao subir de 5% para 10% (VIG 1). Os 11 PV perdidos continuam perdidos.
+
+PUBLICACAO
+1. Faca backup JSON antes de atualizar.
+2. Publique o conteudo da pasta skill-tree-rpg na raiz do repositorio GitHub Pages.
+3. Confira que ordem-config.js foi publicado junto de index.html.
+4. Teste em duas abas/dispositivos para confirmar que a ficha e sincronizada pelo Supabase.
+
+Nenhuma alteracao SQL necessaria. Testes automatizados: 65 aprovados.

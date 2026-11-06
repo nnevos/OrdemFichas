@@ -193,10 +193,22 @@ export function recover(character,resource,amount){
  const n=bounded(amount,0,9999);
  return {...character,current:{...d.current,[resource]:Math.min(d[resource],d.current[resource]+n)}};
 }
+/** Atualiza o NEX e concede os ganhos de recursos da nova etapa.
+ * Ao subir, soma aos recursos atuais apenas a diferenca dos maximos, preservando
+ * pontos ja perdidos/gastos. Ao descer, apenas limita ao novo maximo.
+ * Ajustes manuais extraPV/extraPE/extraSAN permanecem inalterados.
+ */
 export function changeNex(character,nex){
- if(!NEX_STEPS.includes(Number(nex)))throw new Error('NEX fora da progressao oficial');
- const current=derive(character).current;
- const next={...character,nex:Number(nex),current};
- const nextMax=derive(next);
- return {...next,current:{pv:Math.min(current.pv,nextMax.pv),pe:Math.min(current.pe,nextMax.pe),san:Math.min(current.san,nextMax.san)}};
+ const target=Number(nex);
+ if(!NEX_STEPS.includes(target))throw new Error('NEX fora da progressao oficial');
+ const before=derive(character);
+ if(target===Number(character.nex))return character;
+ const next={...character,nex:target};
+ const after=derive(next);
+ const increasing=target>Number(character.nex);
+ const current=Object.fromEntries(['pv','pe','san'].map(resource=>{
+  const gain=increasing?Math.max(0,after[resource]-before[resource]):0;
+  return [resource,Math.max(0,Math.min(after[resource],before.current[resource]+gain))];
+ }));
+ return {...next,current};
 }
