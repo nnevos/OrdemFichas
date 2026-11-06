@@ -16,14 +16,16 @@ test('Universitario aumenta PE e limite por turno',()=>{const d=derive(mk({origi
 test('Policial recebe defesa adicional',()=>{assert.equal(derive(mk({origin:'Policial'})).defense,14)});
 test('Treinamento automatico de origem e de classe',()=>{const c=mk({classId:'ocultista',origin:'Investigador'}),d=derive(c);for(const name of ['Ocultismo','Vontade','Investigação','Percepção'])assert.equal(d.skills[name].grade,1)});
 test('Carga e sobrecarga: Forca 0 suporta 2 espacos',()=>{const c=mk({attrs:{agi:2,for:0,int:2,pre:2,vig:1},items:[{name:'Mala',space:3,qty:1,category:0}]});const d=derive(c);assert.equal(d.capacity,2);assert.equal(d.defense,7);assert.equal(d.speed,6);assert.equal(validate(c).errors.length,0)});
-test('Exceder o dobro da carga e erro',()=>{const c=mk({attrs:{agi:2,for:0,int:2,pre:2,vig:1},items:[{name:'Mala',space:5,qty:1,category:0}]});assert.ok(validate(c).errors.some(s=>s.includes('dobro')))});
+test('Exceder dobro da carga gera aviso no modo livre',()=>{const c=mk({attrs:{agi:2,for:0,int:2,pre:2,vig:1},items:[{name:'Mala',space:5,qty:1,category:0}]});assert.ok(validate(c).warnings.some(s=>s.includes('dobro')))});
 test('Rolar atributo zero escolhe o menor de dois d20',()=>{const seq=[17,4];const r=rollPool(0,5,0,()=>seq.shift());assert.deepEqual(r.dice,[17,4]);assert.equal(r.total,9);assert.equal(r.keep,'menor')});
 test('Rolar atributo positivo seleciona o maior',()=>{const seq=[2,19,7];const r=rollPool(3,10,0,()=>seq.shift());assert.equal(r.total,29)});
 test('Reduzir e recuperar PE respeita os maximos',()=>{const c=mk();c.current={pv:null,pe:null,san:null};const spent=spend(c,'pe',2);assert.equal(derive(spent).current.pe,2);assert.equal(derive(recover(spent,'pe',100)).current.pe,4)});
 test('Mudanca de NEX nao reescreve recurso atual',()=>{const c=mk({current:{pv:3,pe:1,san:5}});const u=changeNex(c,20);assert.deepEqual(derive(u).current,{pv:3,pe:1,san:5});assert.equal(derive(u).pv,21+3*5)});
 test('Mudanca para NEX invalido e bloqueada',()=>assert.throws(()=>changeNex(mk(),11),/NEX/));
 test('Limite de atributos avanca em quatro marcos',()=>{assert.equal(attrBudget(mk()),9);assert.equal(attrBudget(mk({nex:99})),13)});
-test('Validacao detecta excesso de atributos',()=>{const c=mk({attrs:{agi:5,for:5,int:5,pre:5,vig:5}});assert.ok(validate(c).errors.length>0)});
+test('Excesso de atributos gera aviso no modo livre',()=>{const c=mk({attrs:{agi:5,for:5,int:5,pre:5,vig:5}});assert.ok(validate(c).warnings.length>0)});
 test('Rituais: custo e circulo oficial',()=>{assert.deepEqual(RITUAL_COST,{1:1,2:3,3:6,4:10});const c=mk({classId:'ocultista',nex:25});assert.equal(derive(c).ritualCircle,2)});
 test('Patente por prestigio',()=>{assert.equal(derive(mk({patentPoints:0})).patent.name,'Recruta');assert.equal(derive(mk({patentPoints:200})).patent.name,'Agente de Elite')});
 test('Origem duplicada nao deve somar treinamento manual',()=>{const c=mk({classId:'ocultista',origin:'Cultista Arrependido',skills:{Ocultismo:1}});assert.equal(derive(c).manualTraining,0)});
+
+test('Perícia pode ser alterada livremente na ficha inclusive acima do NEX e para zero',()=>{const c=mk({nex:5,origin:'Investigador',skills:{'Investigação':3,Percepção:0}});assert.equal(derive(c).skills.Investigação.grade,3);assert.equal(derive(c).skills.Percepção.grade,0);assert.equal(validate(c).errors.length,0);assert.ok(validate(c).warnings.some(s=>s.includes('grau acima')))});

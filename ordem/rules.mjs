@@ -74,15 +74,16 @@ export function ritualCircle(character){
  return character.nex>=85?4:character.nex>=55?3:character.nex>=25?2:1;
 }
 export function initialCharacter(){ return {
- id:'', name:'Novo Agente', player:'',concept:'',background:'',classId:'combatente',origin:'',track:'',nex:5,patentPoints:0,
+ freeformSkills:true, id:'', name:'Novo Agente', player:'',concept:'',background:'',classId:'combatente',origin:'',track:'',nex:5,patentPoints:0,
  attrs:{agi:1,for:1,int:1,pre:1,vig:1}, current:{pv:null,pe:null,san:null},skills:{},
- classTraining:[],choices:{combatSkill:null,combatResist:null},powers:[],rituals:[],items:[],conditions:[],
+ classTraining:[],choices:{combatSkill:null,combatResist:null},powers:[],abilities:[],attacks:[],rituals:[],items:[],conditions:[],
  armorDefense:0,otherDefense:0,extraPV:0,extraPE:0,extraSAN:0,notes:'',lastEdited:null
 }; }
 export function effectiveGrade(character,name){
  const origin = originOf(character.origin);
  const mandatory = [...(origin?.skills || []),...(CLASSES[character.classId]?.mandatory||[]),...
   (character.classId==='combatente'?[character.choices?.combatSkill,character.choices?.combatResist]:[])].filter(Boolean);
+ if(character.freeformSkills && Object.prototype.hasOwnProperty.call(character.skills||{},name))return bounded(character.skills[name],0,3);
  return Math.max(mandatory.includes(name)?1:0,bounded(character.skills?.[name]||0,0,3));
 }
 export function attrBudget(character){
@@ -112,8 +113,10 @@ export function derive(character){
  const totalSpaces=(character.items||[]).reduce((sum,item)=>sum+Math.max(0,t(item.space))*Math.max(1,t(item.qty||1)),0);
  const capacity=a.for===0?2:a.for*5;
  const overloaded=totalSpaces>capacity;
- const defense=10+a.agi+t(character.armorDefense)+t(character.otherDefense)+(character.origin==='Policial'?2:0)-(overloaded?5:0);
- const speed=Math.max(0,9-(overloaded?3:0));
+ const computedDefense=10+a.agi+t(character.armorDefense)+t(character.otherDefense)+(character.origin==='Policial'?2:0)-(overloaded?5:0);
+ const overrideValue=(name,computed)=>character[name]===null||character[name]===undefined||character[name]===''?computed:t(character[name]);
+ const defense=overrideValue('defenseOverride',computedDefense);
+ const speed=Math.max(0,9-(overloaded?3:0)+t(character.speedBonus));
  const current={pv:bounded(character.current?.pv??pv,0,Math.max(0,pv)),pe:bounded(character.current?.pe??pe,0,Math.max(0,pe)),san:bounded(character.current?.san??san,0,Math.max(0,san))};
  const skills=Object.fromEntries(SKILLS.map(s=>[s.name,{...s,grade:effectiveGrade(character,s.name),bonus:SKILL_GRADES[effectiveGrade(character,s.name)]}]));
  const limit=n+(character.origin==='Universitário'?1:0);
@@ -121,8 +124,8 @@ export function derive(character){
  const fixedTraining=[...(originOf(character.origin)?.skills||[]),...c.mandatory,...(character.classId==='combatente'?[character.choices?.combatSkill,character.choices?.combatResist]:[])].filter(Boolean);
  const manualGradeNames=Object.entries(character.skills||{}).filter(([name,grade])=>Number(grade)>0 && !fixedTraining.includes(name)).map(([name])=>name);
  return {attrs:a,pv:Math.max(0,pv),pe:Math.max(0,pe),san:Math.max(0,san),current,defense,speed,
-  block:skills.Fortitude.grade?skills.Fortitude.bonus:0,
-  dodge:defense+(skills.Reflexos.grade?skills.Reflexos.bonus:0),
+  block:overrideValue('blockOverride',(skills.Fortitude.grade?skills.Fortitude.bonus:0)+t(character.blockBonus)),
+  dodge:overrideValue('dodgeOverride',defense+(skills.Reflexos.grade?skills.Reflexos.bonus:0)+t(character.dodgeBonus)),
   limitPE:limit,capacity,totalSpaces,overloaded,exceedsCapacity:totalSpaces>capacity*2,
   skills,extraTraining,manualTraining:manualGradeNames.length,patent:patentOf(character.patentPoints),
   ritualCircle:ritualCircle(character),milestones:levelMilestones(character)};
@@ -132,19 +135,19 @@ export function validate(character){
  let d;
  try{d=derive(character)}catch(e){return {errors:[e.message],warnings};}
  const sum=Object.values(d.attrs).reduce((a,b)=>a+b,0), budget=attrBudget(character);
- if(sum>budget)errors.push(`Atributos excedem o limite: ${sum}/${budget} pontos.`);
+ if(sum>budget)(character.freeformSkills?warnings:errors).push(`Atributos excedem a recomendação: ${sum}/${budget} pontos.`);
  if(sum<budget)warnings.push(`Faltam distribuir ${budget-sum} ponto(s) de atributo.`);
  const max=Math.min(5,3+levelMilestones(character).attrCount);
- if(Object.values(d.attrs).some(v=>v>max))errors.push(`Atributos nao podem exceder ${max} neste NEX.`);
+ if(Object.values(d.attrs).some(v=>v>max))(character.freeformSkills?warnings:errors).push(`Atributos excedem o valor padrão ${max} neste NEX.`);
  if(character.classId==='combatente'){
   if(!['Luta','Pontaria'].includes(character.choices?.combatSkill))warnings.push('Selecione Luta ou Pontaria na classe Combatente.');
   if(!['Fortitude','Reflexos'].includes(character.choices?.combatResist))warnings.push('Selecione Fortitude ou Reflexos na classe Combatente.');
  }
  if(character.nex>=10&&!TRACKS[character.classId].includes(character.track))warnings.push('Escolha uma trilha compatível com sua classe.');
- if(d.manualTraining>d.extraTraining)errors.push(`Pericias extras excedidas: ${d.manualTraining}/${d.extraTraining}.`);
+ if(d.manualTraining>d.extraTraining)(character.freeformSkills?warnings:errors).push(`Perícias livres acima da progressão padrão: ${d.manualTraining}/${d.extraTraining}.`);
  if(d.manualTraining<d.extraTraining)warnings.push(`Pericias de classe disponiveis: ${d.extraTraining-d.manualTraining}.`);
  const maxGrade=character.nex>=70?3:character.nex>=35?2:1;
- if(Object.values(d.skills).some(s=>s.grade>maxGrade))errors.push(`Grau de treinamento excede o limite base para NEX ${character.nex}%.`);
+ if(Object.values(d.skills).some(s=>s.grade>maxGrade))(character.freeformSkills?warnings:errors).push(`Algumas perícias têm grau acima da progressão usual no NEX ${character.nex}%.`);
  const classUpgradeBase={combatente:2,especialista:5,ocultista:3}[character.classId]+d.attrs.int;
  const veterans=Object.values(d.skills).filter(s=>s.grade>=2).length;
  const experts=Object.values(d.skills).filter(s=>s.grade>=3).length;
@@ -152,7 +155,7 @@ export function validate(character){
   warnings.push(`Quantidade de pericias veteranas/expert (${veterans}) acima das escolhas basicas de treinamento para este NEX; confira poderes que concedem treinamento extra.`);
  if(character.nex>=70 && experts>classUpgradeBase)
   warnings.push(`Quantidade de pericias expert (${experts}) acima das escolhas basicas do marco 70%; confira poderes que concedem treinamento extra.`);
- if(d.exceedsCapacity)errors.push('Itens excedem o dobro da capacidade de carga.');
+ if(d.exceedsCapacity)(character.freeformSkills?warnings:errors).push('Itens excedem o dobro da capacidade de carga.');
  for(const [i,item] of (character.items||[]).entries()){
   if(!item.name?.trim())warnings.push(`Item ${i+1} sem nome.`);
   if(t(item.space)<0||t(item.qty)<1)errors.push(`Item ${i+1} com quantidade ou espacos invalidos.`);
