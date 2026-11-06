@@ -1,0 +1,27 @@
+ARQUIVO DA ORDEM - SUPABASE
+
+1. No SQL Editor do Supabase, execute CONFIGURAR-SUPABASE-ORDEM.sql.
+   O SQL cria as tabelas realmente usadas pelo site e concede permissao de
+   leitura, criacao, edicao e exclusao para visitantes anonimos.
+
+2. Publique TODOS os arquivos da pasta skill-tree-rpg em um servidor HTTPS.
+   Nao abra index.html por file://, pois os modulos ES precisam de servidor.
+
+3. Acesse testar-supabase.html no mesmo dominio e clique em Executar teste completo.
+   O teste cria uma campanha e uma ficha temporarias, le, edita, aguarda
+   o evento UPDATE do Realtime e apaga os dados de teste.
+
+4. Se todas as linhas exibirem OK, abra index.html em duas abas ou dispositivos.
+   Crie uma campanha e uma ficha e altere PV em um dispositivo.
+   Confira se a mudanca aparece no outro sem atualizar a pagina.
+
+IMPORTANTE: ESTE MODO SEM LOGIN E PUBLICAMENTE EDITAVEL.
+Qualquer pessoa com a chave publica consegue acessar e apagar todas as fichas.
+Nao coloque informacoes pessoais/privadas nem use em producao aberta sem
+implementar autorizacao de campanha em backend/Edge Function.
+
+A configuracao do cliente esta em ordem-config.js. Nunca coloque service_role
+ou secret keys no navegador.
+
+STATUS: os testes dependem de execucao real no seu projeto Supabase.
+O pacote nao comprova, sozinho, que o Realtime esta funcionando na nuvem.

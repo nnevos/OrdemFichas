@@ -1,0 +1,34 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Diagnostico Supabase - Arquivo da Ordem</title><style>body{font:16px system-ui,sans-serif;max-width:760px;margin:40px auto;padding:0 18px;background:#101820;color:#f0f5f8}button{padding:12px 20px;border:0;border-radius:8px;background:#8bd7d2;color:#102025;font-weight:700;cursor:pointer}pre{white-space:pre-wrap;background:#1d2c36;border-radius:8px;padding:18px;line-height:1.6}a{color:#8bd7d2}</style></head><body><h1>Diagnostico do Supabase</h1><p>Teste de permissao, criacao, leitura, edicao, exclusao e notificacao Realtime usando registros temporarios. Execute somente apos aplicar <code>CONFIGURAR-SUPABASE-ORDEM.sql</code>.</p><button id="start">Executar teste completo</button><pre id="log">Aguardando...</pre><p><a href="index.html">Voltar ao Arquivo da Ordem</a></p><script src="ordem-config.js"></script><script type="module">
+const button=document.getElementById('start'),log=document.getElementById('log');
+const output=(message)=>{log.textContent+='\n'+message};
+const pause=(ms)=>new Promise(r=>setTimeout(r,ms));
+button.addEventListener('click',async()=>{
+ button.disabled=true;log.textContent='Iniciando testes...';
+ const cfg=window.ORDEM_SUPABASE_CONFIG;
+ if(!cfg?.url||!cfg?.anonKey){output('FALHA: ordem-config.js nao encontrado.');button.disabled=false;return}
+ let client,campaignId=crypto.randomUUID(),characterId=crypto.randomUUID(),channel,received=false,createdCampaign=false,createdCharacter=false;
+ try{
+  const {createClient}=await import('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm');
+  client=createClient(cfg.url,cfg.anonKey,{auth:{persistSession:false,autoRefreshToken:false}});
+  const check=(r,step)=>{if(r.error)throw new Error(step+': '+r.error.message);output('OK: '+step);return r.data};
+  check(await client.from('ordem_campaigns').select('id').limit(1),'Conexao e leitura de campanhas');
+  check(await client.from('ordem_characters').select('id').limit(1),'Leitura de fichas');
+  check(await client.from('ordem_campaigns').insert({id:campaignId,name:'Teste temporario - apagar'}),'Criacao de campanha');createdCampaign=true;
+  check(await client.from('ordem_characters').insert({id:characterId,campaign_id:campaignId,title:'Teste temporario',sheet:{name:'Teste temporario',pv:20}}),'Criacao de ficha');createdCharacter=true;
+  const rows=check(await client.from('ordem_characters').select('sheet').eq('id',characterId),'Consulta da ficha');
+  if(rows.length!==1)throw Error('Ficha nao encontrada apos insercao');
+  channel=client.channel('diagnostico-'+characterId).on('postgres_changes',{event:'UPDATE',schema:'public',table:'ordem_characters',filter:'id=eq.'+characterId},()=>{received=true});
+  const subscribed=new Promise(resolve=>{channel.subscribe(status=>{if(status==='SUBSCRIBED')resolve(true);if(status==='CHANNEL_ERROR'||status==='TIMED_OUT')resolve(false)})});
+  const realtimeReady=await Promise.race([subscribed,pause(10000).then(()=>false)]);
+  output(realtimeReady?'OK: Canal Realtime conectado':'AVISO: Canal Realtime nao conectou em 10 segundos');
+  check(await client.from('ordem_characters').update({sheet:{name:'Teste temporario',pv:15}}).eq('id',characterId),'Edicao da ficha');
+  if(realtimeReady){for(let i=0;i<16&&!received;i++)await pause(500);output(received?'OK: Evento UPDATE recebido pelo Realtime':'FALHA: Evento UPDATE nao chegou em 8 segundos')}
+  check(await client.from('ordem_characters').delete().eq('id',characterId),'Exclusao da ficha temporaria');createdCharacter=false;
+  check(await client.from('ordem_campaigns').delete().eq('id',campaignId),'Exclusao da campanha temporaria');createdCampaign=false;
+  output(received?'RESULTADO: CRUD e Realtime passaram.':'RESULTADO: CRUD passou; Realtime precisa ser verificado.');
+ }catch(e){output('FALHA: '+e.message)}finally{
+  if(client){if(createdCharacter)await client.from('ordem_characters').delete().eq('id',characterId);if(createdCampaign)await client.from('ordem_campaigns').delete().eq('id',campaignId);if(channel)await client.removeChannel(channel)}
+  button.disabled=false;
+ }
+});
+</script></body></html>
