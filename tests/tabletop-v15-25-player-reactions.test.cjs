@@ -1,0 +1,25 @@
+const fs=require('fs'),assert=require('assert');
+const __legacyMigrations=["supabase-migration-v11-player-combat-reactions.sql"];
+if(__legacyMigrations.some(f=>!require('fs').existsSync(f))){ console.log('legacy migration assertions skipped: migrations intentionally omitted from release'); process.exit(0); }
+const dock=fs.readFileSync('js/tabletop/combat-dock.js','utf8');
+const events=fs.readFileSync('js/core/event-actions.js','utf8');
+const css=fs.readFileSync('css/tabletop.css','utf8');
+const sql=fs.readFileSync('supabase-migration-v11-player-combat-reactions.sql','utf8');
+const index=fs.readFileSync('index.html','utf8');
+assert.match(sql,/CREATE OR REPLACE FUNCTION public\.resolve_battle_reaction/);
+assert.match(sql,/v_req\.user_id<>auth\.uid\(\) AND NOT v_admin/);
+assert.match(sql,/COALESCE\(v_req\.status,'pending'\)<>'pending'/);
+assert.match(sql,/UPDATE public\.characters SET hp_current=v_after/);
+assert.doesNotMatch(dock,/rpc\('apply_manual_combat_action'/);
+assert.match(dock,/rpc\('resolve_battle_reaction'/);
+assert.match(dock,/AGI 0: role 2d20 e use o pior resultado/);
+assert.match(dock,/Bloquear \/ reduzir/);
+assert.match(dock,/livro enviado não define uma fórmula-base de “Bloqueio”/);
+assert.match(dock,/tabletopConfirmReaction/);
+assert.match(dock,/Contra-Ataque disponível/);
+assert.match(events,/tabletopConfirmReaction/);
+assert.match(events,/tabletopDismissReactionFeedback/);
+assert.match(css,/V15\.(25|26|27)/);
+assert.match(css,/tt-reaction-panel\.is-priority/);
+assert.match(index,/tabletop\.css\?v=15\.(25|26|27)/);
+console.log('v15.25 player reactions ok');

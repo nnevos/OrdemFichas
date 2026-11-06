@@ -1,0 +1,11 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+test('new tokens spawn around current viewport center instead of board center',()=>{const app=read('js/tabletop/app.js');assert.match(app,/viewportCenterWorld/);});
+test('token wrapper does not rotate labels and hp with artwork',()=>{const token=read('js/tabletop/token-view.js'),css=read('css/tabletop.css');assert.doesNotMatch(token,/translate3d\([^\n]+rotate\(/);assert.match(token,/--token-rotation/);assert.match(css,/tabletop-token-face\{transform:rotate\(var\(--token-rotation/);});
+test('touch gestures use camera scale consistently',()=>{const touch=read('js/tabletop/touch-gestures.js');assert.match(touch,/old\.scale/);assert.match(touch,/scale:nextScale/);assert.doesNotMatch(touch,/zoom:/);});
+test('far zoom reduces labels instead of collapsing token ui',()=>{const css=read('css/tabletop.css'),view=read('js/tabletop/board-view.js');assert.match(view,/zoom-far/);assert.match(css,/zoom-far \.tabletop-token-name/);});
+test('tabletop exposes stable zoom controls and selection hud',()=>{const renderer=read('js/tabletop/renderer.js');assert.match(renderer,/zoomTabletopOut/);assert.match(renderer,/data-tabletop-combat-dock/);});

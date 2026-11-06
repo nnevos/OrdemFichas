@@ -1,0 +1,108 @@
+
+
+
+/* =========================================================
+   STEAM DECK / TABLETS
+========================================================= */
+
+@media (max-width: 1180px) {
+
+  .sheet-wrapper > .grid {
+    grid-template-columns:
+      170px
+      minmax(
+        260px,
+        0.8fr
+      )
+      minmax(
+        320px,
+        1.2fr
+      )
+      !important;
+  }
+
+  .character-fields-grid {
+    grid-template-columns:
+      repeat(
+        3,
+        minmax(
+          115px,
+          1fr
+        )
+      );
+  }
+
+}
+
+
+/* =========================================================
+   TABLET MENOR
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .skills-grid {
+    grid-template-columns:
+      1fr
+      !important;
+  }
+
+  .topbar {
+    align-items:
+      flex-start;
+  }
+
+  .topbar-right {
+    flex-wrap:
+      wrap;
+
+    justify-content:
+      flex-end;
+  }
+
+  .sheet-wrapper > .grid {
+    grid-template-columns:
+      1fr
+      !important;
+  }
+
+  .sheet-wrapper > .grid > div:first-child {
+    display: grid;
+
+    grid-template-columns:
+      1fr
+      1.25fr;
+
+    gap: 9px;
+  }
+
+  .character-fields-grid {
+    grid-template-columns:
+      repeat(
+        3,
+        1fr
+      );
+  }
+
+  .rules-hero {
+    grid-template-columns:
+      1fr;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+
+/* =========================================================
+   COMPACTAÇÃO FINAL: FICHA / STEAM DECK / MOBILE
+========================================================= */
+.character-summary { padding: 10px 12px !important; }
+.character-fields-grid > div { min-width: 0; }
+.character-avatar-control { display:flex; align-items:center; gap:8px; font-size:10px; }
+.avatar-change-label { cursor:pointer; padding:5px 8px; border:1px solid rgba(255,255,255,.12); border-radius:7px; opacity:.8; }
+.avatar-file-input { max-width:180px; font-size:10px; }
+#save-bar { position: static !important; min-height:0 !important; padding:6px 10px !important; display:flex; justify-content:flex-end; align-items:center; gap:8px; border-top:1px solid rgba(255,255,255,.05); }

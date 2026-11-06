@@ -1,0 +1,2019 @@
+{
+  "version": "15.38",
+  "generatedAt": "2026-09-01T18:18:52.363Z",
+  "totalAbilities": 192,
+  "flaggedCount": 77,
+  "gradeSummary": {
+    "1": {
+      "count": 25,
+      "meanDice": 6.3,
+      "meanEfficiency": 6.3
+    },
+    "2": {
+      "count": 28,
+      "meanDice": 8.39,
+      "meanEfficiency": 4.2
+    },
+    "3": {
+      "count": 30,
+      "meanDice": 13.7,
+      "meanEfficiency": 4.57
+    },
+    "4": {
+      "count": 30,
+      "meanDice": 17.7,
+      "meanEfficiency": 4.43
+    }
+  },
+  "flagged": [
+    {
+      "id": "arsenal-abissal",
+      "title": "Arsenal Abissal",
+      "category": "habilidades",
+      "element": "agua",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 28,
+      "diceMax": 48,
+      "diceTerms": [
+        "3d6",
+        "3d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": true,
+      "combo": true,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto",
+        "dano + área",
+        "combo + execução",
+        "multiplicação por hit"
+      ]
+    },
+    {
+      "id": "execucao-elemental",
+      "title": "Execução Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 45.5,
+      "diceMax": 78,
+      "diceTerms": [
+        "3d6",
+        "2d6",
+        "2d6",
+        "4d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": true,
+      "combo": true,
+      "burstIndex": 11.38,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto",
+        "dano + área",
+        "combo + execução"
+      ]
+    },
+    {
+      "id": "carnificina-ignea",
+      "title": "Carnificina Ígnea",
+      "category": "habilidades",
+      "element": "fogo",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": true,
+      "persistent": false,
+      "execution": true,
+      "combo": true,
+      "burstIndex": 5.25,
+      "risk": [
+        "muitos dados no texto",
+        "economia de ações",
+        "dano + área",
+        "combo + execução"
+      ]
+    },
+    {
+      "id": "arsenal-glacial",
+      "title": "Arsenal Glacial",
+      "category": "habilidades",
+      "element": "frio",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 38.5,
+      "diceMax": 66,
+      "diceTerms": [
+        "3d6",
+        "1d6",
+        "2d6",
+        "3d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": true,
+      "combo": false,
+      "burstIndex": 9.63,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "explosao-incandescente",
+      "title": "Explosão Incandescente",
+      "category": "habilidades",
+      "element": "fogo",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 24.5,
+      "diceMax": 42,
+      "diceTerms": [
+        "3d6",
+        "1d6",
+        "1d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 8.17,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "nucleo-defensivo-universal-2",
+      "title": "Núcleo Defensivo",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 23.5,
+      "diceMax": 40,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "1d4",
+        "2d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 7.83,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "impacto-sismico",
+      "title": "Impacto Sísmico",
+      "category": "habilidades",
+      "element": "terra",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "3d6",
+        "1d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "arma-cristalina",
+      "title": "Arma Cristalina",
+      "category": "habilidades",
+      "element": "frio",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "3d6",
+        "2d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "tempestade-de-golpes",
+      "title": "Tempestade de Golpes",
+      "category": "habilidades",
+      "element": "vento",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 7,
+      "diceMax": 12,
+      "diceTerms": [
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": true,
+      "persistent": false,
+      "execution": true,
+      "combo": true,
+      "burstIndex": 1.75,
+      "risk": [
+        "economia de ações",
+        "combo + execução",
+        "multiplicação por hit"
+      ]
+    },
+    {
+      "id": "conjurador--colapso-elemental",
+      "title": "Colapso Elemental",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "",
+      "diceAvg": 31.5,
+      "diceMax": 54,
+      "diceTerms": [
+        "4d6",
+        "3d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 31.5,
+      "risk": [
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "tecelao-elemental--tempestade-combinada",
+      "title": "Tempestade Combinada",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "Ação Padrão",
+      "diceAvg": 31.5,
+      "diceMax": 54,
+      "diceTerms": [
+        "3d6",
+        "3d6",
+        "3d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 31.5,
+      "risk": [
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "conjurador--tempestade-elemental",
+      "title": "Tempestade Elemental",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "3d6",
+        "1d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 21,
+      "risk": [
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "prisao-gelida",
+      "title": "Prisão Gélida",
+      "category": "habilidades",
+      "element": "frio",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 28,
+      "diceMax": 48,
+      "diceTerms": [
+        "3d6",
+        "1d6",
+        "3d6",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 9.33,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "impacto-elemental",
+      "title": "Impacto Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 2,
+      "pd": 2,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 8.75,
+      "risk": [
+        "dano/PD alto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "corte-incandescente",
+      "title": "Corte Incandescente",
+      "category": "habilidades",
+      "element": "fogo",
+      "grade": 2,
+      "pd": 2,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "1d6",
+        "1d6",
+        "2d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 8.75,
+      "risk": [
+        "dano/PD alto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "arma-compressiva",
+      "title": "Arma Compressiva",
+      "category": "habilidades",
+      "element": "agua",
+      "grade": 2,
+      "pd": 2,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 8.75,
+      "risk": [
+        "dano/PD alto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "ruptura-hidrostatica",
+      "title": "Ruptura Hidrostática",
+      "category": "habilidades",
+      "element": "agua",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 24.5,
+      "diceMax": 42,
+      "diceTerms": [
+        "3d6",
+        "2d6",
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 8.17,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "impacto-hidraulico",
+      "title": "Impacto Hidráulico",
+      "category": "habilidades",
+      "element": "agua",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "3d6",
+        "2d6",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto",
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "manto-elemental",
+      "title": "Manto Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 2,
+      "pd": 2,
+      "action": "4 rodadas",
+      "diceAvg": 14,
+      "diceMax": 24,
+      "diceTerms": [
+        "1d6",
+        "1d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "chama-intensificada",
+      "title": "Chama Intensificada",
+      "category": "habilidades",
+      "element": "fogo",
+      "grade": 2,
+      "pd": 2,
+      "action": "",
+      "diceAvg": 14,
+      "diceMax": 24,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "egide-elemental",
+      "title": "Égide Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 27,
+      "diceMax": 46,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "1d4",
+        "2d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 6.75,
+      "risk": [
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "sobrecarga-elemental",
+      "title": "Sobrecarga Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 4,
+      "pd": 4,
+      "action": "4 rodadas",
+      "diceAvg": 24.5,
+      "diceMax": 42,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "2d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 6.13,
+      "risk": [
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "manifestacao-belica",
+      "title": "Manifestação Bélica",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "3d6",
+        "1d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 5.25,
+      "risk": [
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "mare-da-vida",
+      "title": "Maré da Vida",
+      "category": "habilidades",
+      "element": "agua",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "3d6",
+        "2d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 5.25,
+      "risk": [
+        "muitos dados no texto",
+        "dano + área"
+      ]
+    },
+    {
+      "id": "colapso-sismico",
+      "title": "Colapso Sísmico",
+      "category": "habilidades",
+      "element": "terra",
+      "grade": 4,
+      "pd": 4,
+      "action": "3 rodadas",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": true,
+      "combo": true,
+      "burstIndex": 4.38,
+      "risk": [
+        "dano + área",
+        "combo + execução"
+      ]
+    },
+    {
+      "id": "inventor-trilha--dispositivo-elemental",
+      "title": "Dispositivo Elemental",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "Ação Padrão",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 21,
+      "risk": [
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "medico-de-campo--primeiros-socorros",
+      "title": "Primeiros Socorros",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "Ação Padrão",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 21,
+      "risk": [
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "sabotador--armadilhas",
+      "title": "Armadilhas",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "Ação Padrão",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 21,
+      "risk": [
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "elementalista-puro--manifestacao-total",
+      "title": "Manifestação Total",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "Ação Padrão",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 21,
+      "risk": [
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "invocador-elemental--avatar-elemental",
+      "title": "Avatar Elemental",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "Ação Padrão",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 21,
+      "risk": [
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "tecelao-elemental--combinacao-elemental",
+      "title": "Combinação Elemental",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "Ação Padrão",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 21,
+      "risk": [
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "convergencia-elemental",
+      "title": "Convergência Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 0,
+      "pd": 0,
+      "action": "4 rodadas",
+      "diceAvg": 14,
+      "diceMax": 24,
+      "diceTerms": [
+        "1d6",
+        "1d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 14,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "cura-fluida",
+      "title": "Cura Fluida",
+      "category": "habilidades",
+      "element": "agua",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 14,
+      "diceMax": 24,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 14,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "chama-breve",
+      "title": "Chama Breve",
+      "category": "habilidades",
+      "element": "fogo",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 13,
+      "diceMax": 22,
+      "diceTerms": [
+        "2d6",
+        "1d4",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 13,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "dominio-elemental",
+      "title": "Domínio Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 0,
+      "pd": 0,
+      "action": "4 rodadas",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "1d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 10.5,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "arsenal-hidrostatico",
+      "title": "Arsenal Hidrostático",
+      "category": "habilidades",
+      "element": "agua",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "2d6",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 10.5,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "projetil-rochoso",
+      "title": "Projétil Rochoso",
+      "category": "habilidades",
+      "element": "terra",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "2d6",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 10.5,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "corte-de-ar",
+      "title": "Corte de Ar",
+      "category": "habilidades",
+      "element": "vento",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "2d6",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 10.5,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "golpe-elemental",
+      "title": "Golpe Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 9.5,
+      "diceMax": 16,
+      "diceTerms": [
+        "2d6",
+        "1d4"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 9.5,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "barreira-elemental",
+      "title": "Barreira Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 9.5,
+      "diceMax": 16,
+      "diceTerms": [
+        "1d6",
+        "1d4",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 9.5,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "rajada-de-vento",
+      "title": "Rajada de Vento",
+      "category": "habilidades",
+      "element": "vento",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 9.5,
+      "diceMax": 16,
+      "diceTerms": [
+        "2d6",
+        "1d4"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 9.5,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "sobrecarga",
+      "title": "Sobrecarga",
+      "category": "habilidades",
+      "element": "energia",
+      "grade": 2,
+      "pd": 2,
+      "action": "",
+      "diceAvg": 14,
+      "diceMax": 24,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "jato-de-agua",
+      "title": "Jato de Água",
+      "category": "habilidades",
+      "element": "agua",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 7,
+      "diceMax": 12,
+      "diceTerms": [
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "descarga-eletrica",
+      "title": "Descarga Elétrica",
+      "category": "habilidades",
+      "element": "energia",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 7,
+      "diceMax": 12,
+      "diceTerms": [
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "pulso-arcano",
+      "title": "Pulso Arcano",
+      "category": "habilidades",
+      "element": "energia",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 7,
+      "diceMax": 12,
+      "diceTerms": [
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "toque-congelante",
+      "title": "Toque Congelante",
+      "category": "habilidades",
+      "element": "frio",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 7,
+      "diceMax": 12,
+      "diceTerms": [
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "arma-de-gelo",
+      "title": "Arma de Gelo",
+      "category": "habilidades",
+      "element": "frio",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 7,
+      "diceMax": 12,
+      "diceTerms": [
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "golpe-brutal",
+      "title": "Golpe Brutal",
+      "category": "habilidades",
+      "element": "forca-inata",
+      "grade": 1,
+      "pd": 1,
+      "action": "Padrão",
+      "diceAvg": 7,
+      "diceMax": 12,
+      "diceTerms": [
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 7,
+      "risk": [
+        "dano/PD alto"
+      ]
+    },
+    {
+      "id": "projetil-elemental",
+      "title": "Projétil Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 3,
+      "pd": 3,
+      "action": "Padrão",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 5.83,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "furia-flamejante",
+      "title": "Fúria Flamejante",
+      "category": "habilidades",
+      "element": "fogo",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "1d6",
+        "3d6",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 5.83,
+      "risk": [
+        "multiplicação por hit"
+      ]
+    },
+    {
+      "id": "corrente-instavel",
+      "title": "Corrente Instável",
+      "category": "habilidades",
+      "element": "energia",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "3d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 5.83,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "ruptura-energetica",
+      "title": "Ruptura Energética",
+      "category": "habilidades",
+      "element": "energia",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "3d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 5.83,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "disparo-elemental",
+      "title": "Disparo Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 4,
+      "pd": 4,
+      "action": "Se o ataque exceder a Defesa do alvo em 5 ou mais:",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "3d6",
+        "1d6",
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 5.25,
+      "risk": [
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "congelamento-total",
+      "title": "Congelamento Total",
+      "category": "habilidades",
+      "element": "frio",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 21,
+      "diceMax": 36,
+      "diceTerms": [
+        "3d6",
+        "2d6",
+        "1d6"
+      ],
+      "aoe": false,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 5.25,
+      "risk": [
+        "muitos dados no texto"
+      ]
+    },
+    {
+      "id": "pulso-instavel",
+      "title": "Pulso Instável",
+      "category": "habilidades",
+      "element": "energia",
+      "grade": 2,
+      "pd": 2,
+      "action": "",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "2d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 5.25,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "expansao-elemental",
+      "title": "Expansão Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 14,
+      "diceMax": 24,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 4.67,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "fissura-sismica",
+      "title": "Fissura Sísmica",
+      "category": "habilidades",
+      "element": "terra",
+      "grade": 3,
+      "pd": 3,
+      "action": "3 rodadas",
+      "diceAvg": 14,
+      "diceMax": 24,
+      "diceTerms": [
+        "2d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 4.67,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "colapso-elemental",
+      "title": "Colapso Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "3d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 4.38,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "incendio-descontrolado",
+      "title": "Incêndio Descontrolado",
+      "category": "habilidades",
+      "element": "fogo",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "3d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 4.38,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "inferno-localizado",
+      "title": "Inferno Localizado",
+      "category": "habilidades",
+      "element": "fogo",
+      "grade": 4,
+      "pd": 4,
+      "action": "4 rodadas",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "2d6",
+        "2d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 4.38,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "tempestade-direcionada",
+      "title": "Tempestade Direcionada",
+      "category": "habilidades",
+      "element": "vento",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "3d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 4.38,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "lamina-do-vacuo",
+      "title": "Lâmina do Vácuo",
+      "category": "habilidades",
+      "element": "vento",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "3d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": true,
+      "combo": false,
+      "burstIndex": 4.38,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "colapso-arcano",
+      "title": "Colapso Arcano",
+      "category": "habilidades",
+      "element": "energia",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 17.5,
+      "diceMax": 30,
+      "diceTerms": [
+        "3d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 4.38,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "sepultamento-glacial",
+      "title": "Sepultamento Glacial",
+      "category": "habilidades",
+      "element": "frio",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 14,
+      "diceMax": 24,
+      "diceTerms": [
+        "2d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": true,
+      "combo": false,
+      "burstIndex": 3.5,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "massacre-corporal",
+      "title": "Massacre Corporal",
+      "category": "habilidades",
+      "element": "forca-inata",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 14,
+      "diceMax": 24,
+      "diceTerms": [
+        "2d6",
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": true,
+      "persistent": false,
+      "execution": true,
+      "combo": false,
+      "burstIndex": 3.5,
+      "risk": [
+        "economia de ações"
+      ]
+    },
+    {
+      "id": "arsenal-elemental",
+      "title": "Arsenal Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "2d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 3.5,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "zona-de-combustao",
+      "title": "Zona de Combustão",
+      "category": "habilidades",
+      "element": "fogo",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "1d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 3.5,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "forma-elemental",
+      "title": "Forma Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "1d6",
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 2.63,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "torrente-devastadora",
+      "title": "Torrente Devastadora",
+      "category": "habilidades",
+      "element": "agua",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "3d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 2.63,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "nucleo-de-sobrecarga",
+      "title": "Núcleo de Sobrecarga",
+      "category": "habilidades",
+      "element": "energia",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 10.5,
+      "diceMax": 18,
+      "diceTerms": [
+        "1d6",
+        "2d6"
+      ],
+      "aoe": true,
+      "extraAction": false,
+      "persistent": true,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 2.63,
+      "risk": [
+        "dano + área"
+      ]
+    },
+    {
+      "id": "transicao-elemental",
+      "title": "Transição Elemental",
+      "category": "habilidades",
+      "element": "universal",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 7,
+      "diceMax": 12,
+      "diceTerms": [
+        "1d6",
+        "1d6"
+      ],
+      "aoe": true,
+      "extraAction": true,
+      "persistent": false,
+      "execution": false,
+      "combo": true,
+      "burstIndex": 1.75,
+      "risk": [
+        "economia de ações"
+      ]
+    },
+    {
+      "id": "fluxo-de-combate",
+      "title": "Fluxo de Combate",
+      "category": "habilidades",
+      "element": "forca-inata",
+      "grade": 4,
+      "pd": 4,
+      "action": "",
+      "diceAvg": 7,
+      "diceMax": 12,
+      "diceTerms": [
+        "2d6"
+      ],
+      "aoe": false,
+      "extraAction": true,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 1.75,
+      "risk": [
+        "economia de ações"
+      ]
+    },
+    {
+      "id": "danca-dos-ventos",
+      "title": "Dança dos Ventos",
+      "category": "habilidades",
+      "element": "vento",
+      "grade": 3,
+      "pd": 3,
+      "action": "",
+      "diceAvg": 0,
+      "diceMax": 0,
+      "diceTerms": [],
+      "aoe": true,
+      "extraAction": true,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 0,
+      "risk": [
+        "economia de ações"
+      ]
+    },
+    {
+      "id": "velocidade-sobre-humana",
+      "title": "Velocidade Sobre-Humana",
+      "category": "habilidades",
+      "element": "forca-inata",
+      "grade": 2,
+      "pd": 2,
+      "action": "",
+      "diceAvg": 0,
+      "diceMax": 0,
+      "diceTerms": [],
+      "aoe": false,
+      "extraAction": true,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 0,
+      "risk": [
+        "economia de ações"
+      ]
+    },
+    {
+      "id": "berserker--carnificina",
+      "title": "Carnificina",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "",
+      "diceAvg": 0,
+      "diceMax": 0,
+      "diceTerms": [],
+      "aoe": false,
+      "extraAction": true,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 0,
+      "risk": [
+        "economia de ações"
+      ]
+    },
+    {
+      "id": "estrategista--comando",
+      "title": "Comando",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "Ação Padrão",
+      "diceAvg": 0,
+      "diceMax": 0,
+      "diceTerms": [],
+      "aoe": false,
+      "extraAction": true,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 0,
+      "risk": [
+        "economia de ações"
+      ]
+    },
+    {
+      "id": "invocador-elemental--comando",
+      "title": "Comando",
+      "category": "habilidades-trilha",
+      "element": "",
+      "grade": 0,
+      "pd": 0,
+      "action": "Ação Livre",
+      "diceAvg": 0,
+      "diceMax": 0,
+      "diceTerms": [],
+      "aoe": false,
+      "extraAction": true,
+      "persistent": false,
+      "execution": false,
+      "combo": false,
+      "burstIndex": 0,
+      "risk": [
+        "economia de ações"
+      ]
+    }
+  ],
+  "combos": [
+    {
+      "condition": "imobilizado",
+      "title": "Combos: Imobilizado",
+      "appliedBy": 6,
+      "exploitedBy": 6
+    },
+    {
+      "condition": "caido",
+      "title": "Combos: Caído",
+      "appliedBy": 8,
+      "exploitedBy": 3
+    },
+    {
+      "condition": "encharcado",
+      "title": "Combos: Encharcado",
+      "appliedBy": 1,
+      "exploitedBy": 10
+    },
+    {
+      "condition": "saturado",
+      "title": "Combos: Saturado",
+      "appliedBy": 1,
+      "exploitedBy": 9
+    },
+    {
+      "condition": "sobrecarregado",
+      "title": "Combos: Sobrecarregado",
+      "appliedBy": 3,
+      "exploitedBy": 6
+    },
+    {
+      "condition": "em-chamas",
+      "title": "Combos: Em Chamas",
+      "appliedBy": 1,
+      "exploitedBy": 7
+    },
+    {
+      "condition": "congelado",
+      "title": "Combos: Congelado",
+      "appliedBy": 2,
+      "exploitedBy": 3
+    },
+    {
+      "condition": "atordoado",
+      "title": "Combos: Atordoado",
+      "appliedBy": 3,
+      "exploitedBy": 0
+    },
+    {
+      "condition": "marca-elemental",
+      "title": "Combos: Marca Elemental",
+      "appliedBy": 1,
+      "exploitedBy": 2
+    },
+    {
+      "condition": "lento",
+      "title": "Combos: Lento",
+      "appliedBy": 2,
+      "exploitedBy": 0
+    }
+  ]
+}

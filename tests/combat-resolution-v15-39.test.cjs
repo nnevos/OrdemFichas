@@ -1,0 +1,9 @@
+const fs=require('fs'),vm=require('vm'),test=require('node:test'),assert=require('node:assert/strict');
+function engine(){const code=fs.readFileSync(require('path').join(__dirname,'../js/combat/rules-engine.js'),'utf8');const rules=[
+{id:'jato-de-agua',title:'Jato de Água',category:'habilidades',element:'Água',grade:1,type:'Ataque',range:'12m',summary:'Jato pressurizado',mechanics:['Dano: 2d6. Teste (Força): se falhar, é empurrado.']},
+{id:'golpe-elemental',title:'Golpe Elemental',category:'habilidades',element:'Fogo',grade:1,type:'Ataque',range:'Corpo a corpo',summary:'Golpe elemental corpo a corpo',mechanics:['Dano: 2d6.']},
+{id:'campo-elemental',title:'Campo Elemental',category:'habilidades',element:'Energia',grade:3,type:'Controle',range:'9m',summary:'Cria uma área de 3m',mechanics:['Área: 3m. Inimigos fazem teste de Vigor.']}
+];const ctx={window:{RuleBook:{getAll:()=>rules}},RuleBook:{getAll:()=>rules},console};ctx.window.window=ctx.window;vm.createContext(ctx);vm.runInContext(code,ctx);return ctx.window.EDFCombatRules;}
+test('ataque elemental a distancia pede Pontaria depois da Ressonancia',()=>{const e=engine(),r=e.resolutionInfo({name:'Jato de Água',element:'Água',res:1,type:'Ataque',range:'12m',effect:'Dano: 2d6. Teste (Força): se falhar, empurra.'});assert.equal(r.mode,'precision');assert.equal(r.damageFormula,'2d6');});
+test('ataque elemental corpo a corpo usa Ressonancia como acerto',()=>{const e=engine(),r=e.resolutionInfo({name:'Golpe Elemental',element:'Fogo',res:1,type:'Ataque',range:'Corpo a corpo',effect:'Dano: 2d6.'});assert.equal(r.mode,'resonance-hit');});
+test('area com resistencia nao pede Pontaria',()=>{const e=engine(),r=e.resolutionInfo({name:'Campo Elemental',element:'Energia',res:3,type:'Controle',range:'9m',effect:'Área 3m. Teste de Vigor.'});assert.equal(r.mode,'resistance');});

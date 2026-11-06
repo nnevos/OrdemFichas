@@ -1,0 +1,88 @@
+Nome: NOME DO INIMIGO
+Subtitulo: SUBTITULO OU FUNCAO
+PV: 80
+DEF: 14
+ESQ: 9
+ARM: 4
+RD: 2
+DESL: 9
+Nivel: 5
+Categoria: elite
+Elemento: fogo
+Condicoes: 
+Visivel para jogadores: nome, PV, condicoes, deslocamento, ataques, habilidades
+
+Ataques:
+
+Ataque: NOME DO ATAQUE
+Acao: Acao Padrao
+Teste: 1d20+7
+Dano: 2d8+4
+Efeito: Descreva o efeito do ataque. Se aplicar uma condicao, diga isso aqui tambem.
+Tipo: Ataque corpo a corpo
+Alcance: 2m
+Elemento: 
+RES: 0
+Condicoes: Queimando
+Duracao: 2
+Requisito: 
+Descricao: 
+
+Ataque: SEGUNDO ATAQUE
+Acao: Acao Leve
+Teste: 1d20+5
+Dano: 1d8+3
+Efeito: Empurra o alvo 2m.
+Tipo: Ataque corpo a corpo
+Alcance: 2m
+Elemento: 
+RES: 0
+Condicoes: 
+Duracao: 0
+Requisito: 
+Descricao: 
+
+Habilidades:
+
+Habilidade: NOME DA HABILIDADE
+Acao: Acao Padrao
+Teste: 
+Dano: 3d6
+Efeito: Todos os alvos na area fazem teste de Vigor. Quem falhar fica Queimando.
+Tipo: Area
+Area: Sim
+Alcance: 6m
+Elemento: fogo
+RES: 2
+Condicoes: Queimando
+Duracao: 2
+Requisito: Linha de visao
+Descricao: Explosao elemental que atinge uma area.
+
+Habilidade: NOME DA REACAO
+Acao: Reacao
+Teste: 
+Dano: 1d6
+Efeito: Causa dano no atacante quando o gatilho da reacao ocorrer.
+Tipo: Reacao
+Alcance: 2m
+Elemento: 
+RES: 0
+Condicoes: 
+Duracao: 0
+Requisito: Ser atingido
+Descricao: 
+
+Habilidade: NOME DO PASSIVO
+Acao: Passivo
+Teste: 
+Dano: 
+Efeito: Descreva o bonus ou regra passiva.
+Tipo: Passivo
+Alcance: Pessoal
+Elemento: 
+RES: 0
+Condicoes: 
+Duracao: 0
+Requisito: 
+Descricao: 

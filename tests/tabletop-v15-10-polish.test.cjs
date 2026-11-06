@@ -1,0 +1,13 @@
+const test=require('node:test');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+test('camera is constrained so the board cannot be lost entirely',()=>{const view=read('js/tabletop/board-view.js');assert.match(view,/function clampAxis/);assert.match(view,/function constrain/);assert.match(view,/return constrain\(merged\)/);});
+test('camera supports focus and framing of specific tokens',()=>{const view=read('js/tabletop/board-view.js');assert.match(view,/function focusEntity/);assert.match(view,/function frameEntities/);});
+test('adding tokens focuses the new content',()=>{const app=read('js/tabletop/app.js');assert.match(app,/focusEntity\?\.\(entity\.id/);assert.match(app,/frameEntities\?\.\(created\.map/);});
+test('background click can clear selection and wheel zoom is smooth',()=>{const c=read('js/tabletop/controller.js');assert.match(c,/clearSelection:!event\.shiftKey/);assert.match(c,/Math\.exp\(-event\.deltaY\*\.0016\)/);});
+test('double click focuses a token',()=>{const token=read('js/tabletop/token-view.js');assert.match(token,/addEventListener\('dblclick'/);assert.match(token,/focusEntity/);});
+test('token ui gets inverse visual scale for usable handles',()=>{const css=read('css/tabletop.css'),view=read('js/tabletop/board-view.js');assert.match(view,/--tabletop-ui-scale/);assert.match(css,/var\(--tabletop-ui-scale,1\)/);});
+test('focus action is allowed by safe event dispatcher',()=>{const a=read('js/core/event-actions.js');assert.match(a,/focusSelectedTabletopToken/);});

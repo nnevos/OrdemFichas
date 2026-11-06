@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="pt-BR" class="h-full" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
+  <meta name="theme-color" content="#0d0d12" />
+
+  <!-- Aplica o tema salvo antes do CSS para evitar piscar o tema padrão -->
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem('elemento-frio-theme') || 'dark';
+        document.documentElement.dataset.theme = savedTheme;
+      } catch (_) {}
+    })();
+  </script>
+
+  <title>Interface legada - aguardando migração</title>
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@400;600;700&family=Cinzel:wght@400;700;900&family=Mukta:wght@300;400;600;700&family=Exo+2:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="styles.css?v=15.42" />
+  <link rel="stylesheet" href="css/tabletop.css?v=15.42" />
+</head>
+
+<body class="h-full">
+
+  <!-- LOGIN -->
+  <div id="login-screen" class="login-screen">
+
+    <div class="login-card">
+
+      <h1 class="login-title">
+        Elemento do Frio
+      </h1>
+
+      <p class="login-subtitle">
+        Entre para acessar sua ficha e árvore de habilidades
+      </p>
+
+      <input
+        id="email"
+        class="login-input"
+        type="email"
+        autocomplete="email"
+        placeholder="Email"
+      />
+
+      <input
+        id="password"
+        class="login-input"
+        type="password"
+        autocomplete="current-password"
+        placeholder="Senha"
+      />
+
+      <button
+        data-click-call="login()"
+        class="login-button"
+      >
+        Entrar
+      </button>
+
+      <p
+        id="login-error"
+        class="login-error"
+      ></p>
+
+    </div>
+
+  </div>
+
+
+  <!-- APP -->
+  <div
+    id="app"
+    class="h-full flex flex-col overflow-auto scroll-container hidden"
+  >
+
+    <!-- HEADER -->
+    <header class="app-header">
+
+      <div class="topbar">
+
+        <div class="topbar-left">
+
+          <div class="header-identity" data-click-call="openCharacterPicker()" title="Mestre: trocar personagem">
+
+            <div
+              id="header-avatar"
+              class="header-avatar"
+              aria-hidden="true"
+            >
+              <span>?</span>
+            </div>
+
+            <div class="header-title-wrap">
+
+              <h1
+                id="page-title"
+                class="page-title"
+              >
+                Árvore de Habilidades
+              </h1>
+
+              <p
+                id="user-label"
+                class="user-label"
+              ></p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+          <!-- CONTROLE DO MESTRE -->
+          <div
+            id="admin-panel"
+            class="hidden admin-panel"
+          >
+
+            <label
+              for="player-select"
+              class="admin-label"
+            >
+              Jogador:
+            </label>
+
+            <select
+              id="player-select"
+              data-change-call="loadSelectedPlayer()"
+              class="admin-select"
+            ></select>
+
+          </div>
+
+
+          <!-- SELETOR DE TEMA -->
+          <div class="theme-picker-wrap">
+            <button
+              id="theme-toggle-btn"
+              type="button"
+              data-click-call="toggleThemeMenu(event)"
+              class="theme-toggle-btn"
+              aria-haspopup="true"
+              aria-expanded="false"
+              title="Alterar tema"
+            >
+              <span class="theme-toggle-icon">🎨</span>
+              <span class="theme-toggle-label">Tema</span>
+            </button>
+
+            <div id="theme-menu" class="theme-menu hidden" role="menu">
+              <div class="theme-menu-head">
+                <div>
+                  <strong>Alterar tema</strong>
+                  <small>Escolha as cores da interface</small>
+                </div>
+                <button type="button" class="theme-menu-close" data-click-call="closeThemeMenu()" aria-label="Fechar">×</button>
+              </div>
+
+              <div class="theme-options">
+                <button type="button" class="theme-option" data-theme-option="dark" data-click-call="setTheme('dark')"><span class="theme-preview theme-preview-dark"><i></i><i></i><i></i></span><span><strong>Escuro</strong><small>Preto, grafite e cinza</small></span><b class="theme-check">✓</b></button>
+                <button type="button" class="theme-option" data-theme-option="ice" data-click-call="setTheme('ice')"><span class="theme-preview theme-preview-ice"><i></i><i></i><i></i></span><span><strong>Gelo</strong><small>Azul-gelo, branco e ciano suave</small></span><b class="theme-check">✓</b></button>
+                <button type="button" class="theme-option" data-theme-option="fire" data-click-call="setTheme('fire')"><span class="theme-preview theme-preview-fire"><i></i><i></i><i></i></span><span><strong>Fogo</strong><small>Vermelho, escarlate e laranja</small></span><b class="theme-check">✓</b></button>
+                <button type="button" class="theme-option" data-theme-option="earth" data-click-call="setTheme('earth')"><span class="theme-preview theme-preview-earth"><i></i><i></i><i></i></span><span><strong>Terra</strong><small>Verde-musgo, oliva e natural</small></span><b class="theme-check">✓</b></button>
+                <button type="button" class="theme-option" data-theme-option="energy" data-click-call="setTheme('energy')"><span class="theme-preview theme-preview-energy"><i></i><i></i><i></i></span><span><strong>Energia</strong><small>Cinza azulado, prata e branco elétrico</small></span><b class="theme-check">✓</b></button>
+                <button type="button" class="theme-option" data-theme-option="water" data-click-call="setTheme('water')"><span class="theme-preview theme-preview-water"><i></i><i></i><i></i></span><span><strong>Água</strong><small>Azul-petróleo, turquesa e azul profundo</small></span><b class="theme-check">✓</b></button>
+                <button type="button" class="theme-option" data-theme-option="air" data-click-call="setTheme('air')"><span class="theme-preview theme-preview-air"><i></i><i></i><i></i></span><span><strong>Ar</strong><small>Branco, verde-água e cinza suave</small></span><b class="theme-check">✓</b></button>
+                <button type="button" class="theme-option" data-theme-option="void" data-click-call="setTheme('void')"><span class="theme-preview theme-preview-void"><i></i><i></i><i></i></span><span><strong>Vazio</strong><small>Preto, violeta profundo e púrpura</small></span><b class="theme-check">✓</b></button>
+              </div>
+            </div>
+          </div>
+
+          <button
+            data-click-call="logout()"
+            class="logout-btn"
+          >
+            Sair
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <p class="header-subtitle">
+        Selecione um elemento para visualizar as habilidades
+      </p>
+
+    </header>
+
+
+    <!-- NAVEGAÇÃO -->
+    <nav id="tabs-nav">
+
+      <div
+        id="tabs-container"
+        class="flex gap-2 overflow-x-auto scroll-container"
+      ></div>
+
+    </nav>
+
+
+    <!-- CONTEÚDO -->
+    <main
+      id="main-content"
+      class="flex-1 overflow-auto scroll-container"
+    ></main>
+
+
+    <!-- SALVAMENTO -->
+    <div
+      id="save-bar"
+      class="save-bar"
+    >
+
+      <span
+        id="save-status"
+        class="save-status"
+      ></span>
+
+      <button
+        id="save-btn"
+        data-click-call="saveCharacterData()"
+        class="save-btn"
+        disabled
+      >
+
+        <i
+          data-lucide="save"
+          class="w-4 h-4"
+        ></i>
+
+        <span>
+          Salvar
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- DADOS DAS HABILIDADES -->
+  <script src="skills-data.js"></script>
+
+  <!-- LIVRO DE REGRAS (Bundle para compatibilidade com file://) -->
+  <script src="rules-bundle.js?v=15.42"></script>
+  <script src="js/combat/rules-engine.js?v=15.42"></script>
+
+  <!-- ÍCONES -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- PREVIEW DE DOCX NA BIBLIOTECA -->
+  <script src="https://cdn.jsdelivr.net/npm/mammoth@1.10.0/mammoth.browser.min.js"></script>
+
+  <!-- APP / MODULOS -->
+  <script src="ordem-config.js"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/core/event-actions.js?v=15.42"></script>
+  <script src="js/combat/domain.js"></script>
+  <script src="js/app/character-rules.js"></script>
+  <script src="js/app/master.js?v=15.42"></script>
+  <script src="js/app/combat.js?v=15.42"></script>
+  <script src="js/app/auth-character.js?v=15.42"></script>
+  <script src="js/ui-flow.js"></script>
+  <script src="js/live-sync.js"></script>
+  <script src="js/tabletop/scene-model.js?v=15.42"></script>
+  <script src="js/tabletop/domain.js?v=15.42"></script>
+  <script src="js/tabletop/store.js?v=15.42"></script>
+  <script src="js/tabletop/persistence.js?v=15.42"></script>
+  <script src="js/tabletop/realtime.js?v=15.42"></script>
+  <script src="js/tabletop/coordinates.js?v=15.42"></script>
+  <script src="js/tabletop/object-model.js?v=15.42"></script>
+  <script src="js/tabletop/layers.js?v=15.42"></script>
+  <script src="js/tabletop/grid.js?v=15.42"></script>
+  <script src="js/tabletop/selection.js?v=15.42"></script>
+  <script src="js/tabletop/history.js?v=15.42"></script>
+  <script src="js/tabletop/board-view.js?v=15.42"></script>
+  <script src="js/tabletop/token-view.js?v=15.42"></script>
+  <script src="js/tabletop/context-menu.js?v=15.42"></script>
+  <script src="js/tabletop/controller.js?v=15.42"></script>
+  <script src="js/tabletop/combat-dock.js?v=15.43"></script>
+  <script src="js/tabletop/mobile-ui.js?v=15.42"></script>
+  <script src="js/tabletop/renderer.js?v=15.42"></script>
+  <script src="js/tabletop/app.js?v=15.42"></script>
+  <script src="js/tabletop/editor-shortcuts.js?v=15.42"></script>
+  <script src="js/navigation.js?v=15.42"></script>
+  <script src="js/combat/actions.js?v=15.42"></script>
+  <script src="js/master/players.js"></script>
+  <script src="js/combat/enemies.js?v=15.43"></script>
+  <script src="js/documents.js"></script>
+  <script src="js/session-planner.js?v=15.43"></script>
+  <script src="js/bootstrap.js"></script>
+
+  <script src="js/tabletop/touch-gestures.js?v=15.42"></script>
+</body>
+</html>

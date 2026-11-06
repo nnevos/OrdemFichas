@@ -1,0 +1,14 @@
+const fs=require('fs'); const assert=require('assert');
+const dock=fs.readFileSync('js/tabletop/combat-dock.js','utf8');
+const combat=fs.readFileSync('js/app/combat.js','utf8');
+const renderer=fs.readFileSync('js/tabletop/renderer.js','utf8');
+const index=fs.readFileSync('index.html','utf8');
+assert(dock.includes('tabletopFinishTurn')); 
+assert(dock.includes('tabletopNextTurn'));
+assert(dock.includes('CombatSurface?.renderQuickActions'));
+assert(combat.includes('renderQuickActions:(options={})=>renderCombatQuickActions(options)')); 
+assert(dock.includes('tabletopChooseEnemyAction')); 
+assert(dock.includes('tabletopResolveDodge')); 
+assert.match(renderer,/MESA \+ COMBATE · V15\.(24|25|26|35|38|39|42)/);
+assert.match(index,/combat-dock\.js\?v=15\.(24|25|26|35|38|39|42)/);
+console.log('tabletop combat total merge ok');

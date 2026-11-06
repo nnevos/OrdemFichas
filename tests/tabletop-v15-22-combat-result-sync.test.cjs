@@ -1,0 +1,13 @@
+const fs=require('fs'),assert=require('assert');
+const store=fs.readFileSync('js/tabletop/store.js','utf8');
+const actions=fs.readFileSync('js/combat/actions.js','utf8');
+const enemy=fs.readFileSync('js/combat/enemies.js','utf8');
+const renderer=fs.readFileSync('js/tabletop/renderer.js','utf8');
+assert.match(store,/requests:payload\?\.requests\|\|\[\]/);
+assert.match(actions,/applyManualCombatResultToTabletop/);
+assert.match(actions,/attackResult/);
+assert.match(actions,/begin_combat_action_v1535/);
+assert.match(enemy,/Teste de Pontaria/);
+assert.match(enemy,/Dano base/);
+assert.match(renderer,/V15\.(24|25|26|35|38|39|42)/);
+console.log('v15.22 attack result, reaction delivery and hp sync ok');

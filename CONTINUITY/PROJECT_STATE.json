@@ -1,0 +1,80 @@
+{
+  "snapshot_date": "2026-09-01",
+  "current_version": "V15.25-player-reactions-rulebook-ux",
+  "stable_freeze": "V15.25 - Player Reactions + Rulebook UX",
+  "pre_tabletop_checkpoint": "V14.2 + continuity",
+  "product": "Skill Tree RPG",
+  "product_principle": "RPG presencial primeiro; dados fisicos e decisoes humanas; automacao de ficha, estado e organizacao.",
+  "tabletop_status": {
+    "phase": "Player-owned reactions fixed; mobile reaction UX aligned with supplied rulebook",
+    "implemented": [
+      "board usable without background image",
+      "optional map image",
+      "player enemy npc tokens",
+      "central interaction controller",
+      "click-versus-drag threshold",
+      "stable token DOM during drag",
+      "translate3d visual movement",
+      "persist final position only",
+      "presence and temporary realtime locks",
+      "deferred remote movement while local drag is active",
+      "persistent optional tabletop-to-combat bridge",
+      "hp conditions and current-turn overlay",
+      "7200x4800 minimum logical world",
+      "visible board boundaries",
+      "background image independent from board dimensions",
+      "7 percent overview zoom",
+      "scene token disposition/control/visibility/lock",
+      "explicit map/objects/tokens/markings/gm layers",
+      "configurable grid and optional snap",
+      "Alt bypass for snap",
+      "bestiary batch add up to 30",
+      "GM token context menu",
+      "pointer capture drag hardening",
+      "persistent player quick actions outside combat",
+      "master selected-player quick actions",
+      "action-to-target visual feedback",
+      "physical attack and damage roll workflow",
+      "enemy image upload and URL preview",
+      "enemy picker search and quantity",
+      "mobile initiative shortcut",
+      "dodge block receive and manual counterattack reactions",
+      "combat refresh broadcast with fallback polling",
+      "player-owned atomic combat reaction resolution",
+      "idempotent reaction RPC preventing duplicate damage",
+      "rulebook-aligned dodge flow with physical dice",
+      "mobile-first priority reaction panel"
+    ],
+    "next": [
+      "apply V15.25 migration in Supabase before testing reactions",
+      "multi-client smoke test with GM plus players on real devices",
+      "measure realtime latency under actual session load",
+      "structure additional triggered reactions only where the rulebook defines them"
+    ]
+  },
+  "required_migrations": [
+    "supabase-migration-v7-tabletop.sql",
+    "supabase-migration-v8-tabletop-live-combat.sql",
+    "supabase-migration-v9-tabletop-large-world.sql",
+    "supabase-migration-v10-tabletop-scene-engine.sql",
+    "supabase-migration-v9-tabletop-battle-flow.sql",
+    "supabase-migration-v10-battle-action-requests-rls.sql",
+    "supabase-migration-v11-player-combat-reactions.sql"
+  ],
+  "hard_constraints": [
+    "do not overwrite V13 or V14.2 checkpoints",
+    "do not require combat to use tabletop",
+    "do not add tokens to combat automatically",
+    "do not automate physical dice or player decisions by default",
+    "do not reintroduce inline handlers",
+    "do not reactivate legacy tabletop interactions.js",
+    "update CONTINUITY on every relevant delivery"
+  ],
+  "required_checks": [
+    "npm test",
+    "node scripts/check-inline-events.mjs",
+    "node --check on changed JS",
+    "smoke test touched flows"
+  ],
+  "continuity_entrypoint": "CONTINUITY/START-HERE.md"
+}

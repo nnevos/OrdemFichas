@@ -1,0 +1,12 @@
+{
+  "name": "arquivo-da-ordem-rpg",
+  "private": true,
+  "scripts": {
+    "test": "npm run test:ordem",
+    "build:rules": "node scripts/build-rules-bundle.mjs",
+    "check:inline-events": "node scripts/check-inline-events.mjs",
+    "analyze:balance": "node scripts/analyze-balance.mjs",
+    "test:ordem": "node --test tests-ordem/*.test.mjs",
+    "test:legacy": "node --test tests/*.test.cjs tests/*.test.mjs"
+  }
+}

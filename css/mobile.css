@@ -1,0 +1,656 @@
+/* Mobile consolidado: todas as regras <= 640px em um unico lugar. */
+@media (max-width: 640px) {
+
+/* origem: responsive.css */
+.fade-in {
+    animation: none;
+  }
+
+  .skill-card {
+    transition: none;
+  }
+
+  .skill-card:hover {
+    transform: none;
+  }
+
+/* origem: responsive.css */
+.app-header {
+    padding:
+      7px
+      7px;
+  }
+
+  .header-avatar {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 7px;
+  }
+
+  .page-title {
+    max-width: 46vw;
+
+    font-size:
+      14px;
+  }
+
+  .user-label {
+    max-width: 46vw;
+
+    font-size:
+      9px;
+  }
+
+  .topbar-right {
+    gap: 4px;
+  }
+
+  .admin-label {
+    display:
+      none;
+  }
+
+  .admin-select {
+    max-width:
+      110px;
+
+    padding:
+      4px
+      5px;
+
+    font-size:
+      9px;
+  }
+
+  .logout-btn {
+    padding:
+      4px
+      6px;
+
+    font-size:
+      9px;
+  }
+
+  #tabs-nav {
+    padding:
+      3px
+      5px
+      6px;
+  }
+
+  .tab-btn {
+    padding:
+      6px
+      8px;
+
+    font-size:
+      9px;
+  }
+
+  #main-content {
+    padding-left:
+      5px;
+
+    padding-right:
+      5px;
+  }
+
+  .character-summary-card {
+    padding:
+      7px;
+  }
+
+  .character-fields-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+    gap:
+      6px
+      7px;
+  }
+
+  .sheet-wrapper > .grid > div:first-child {
+    grid-template-columns:
+      1fr;
+  }
+
+  .skill-header,
+  .skill-row {
+    grid-template-columns:
+      minmax(
+        85px,
+        1.4fr
+      )
+      31px
+      41px
+      35px
+      41px;
+
+    gap:
+      3px;
+  }
+
+  .skill-name {
+    font-size:
+      10px;
+  }
+
+  .skill-attr {
+    font-size:
+      8px;
+  }
+
+  .skill-cell {
+    font-size:
+      10px;
+  }
+
+  .shield-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .shield-stat-grid {
+    grid-template-columns:
+      repeat(
+        5,
+        1fr
+      );
+  }
+
+  .shield-meta-row {
+    flex-direction:
+      column;
+
+    gap:
+      2px;
+  }
+
+  .rules-quick-grid {
+    grid-template-columns:
+      1fr;
+  }
+
+  .rules-search-wrap {
+    flex-direction:
+      column;
+
+    align-items:
+      stretch;
+  }
+
+  .save-bar {
+    left:
+      5px;
+
+    right:
+      5px;
+
+    bottom:
+      5px;
+
+    justify-content:
+      space-between;
+
+    border-radius:
+      9px;
+  }
+
+  .save-status {
+    max-width:
+      65vw;
+  }
+
+/* origem: features.css */
+.character-fields-grid { gap: 8px !important; }
+  .character-summary { padding: 9px !important; }
+  .sheet-info-label { font-size: 8px !important; letter-spacing: .04em !important; }
+  .avatar-file-input { max-width:150px; }
+  #save-bar { justify-content:space-between; }
+  .save-btn span { display:none; }
+
+/* origem: features.css */
+.app-header{padding:6px 7px!important}.topbar{align-items:center!important}.header-avatar{width:32px;height:32px}.page-title{max-width:44vw!important;font-size:14px!important}.user-label{max-width:44vw!important}.admin-panel{max-width:40vw}.admin-select{max-width:100%;font-size:9px}.rules-page{padding:12px 8px 30px}.rules-hero{grid-template-columns:1fr}.rules-context{justify-content:flex-start}.rules-search-wrap button{padding:8px}.rules-results{grid-template-columns:1fr}.rule-modal-card{margin:8vh auto 0;max-height:82vh;overflow:auto}
+
+/* origem: features.css */
+.combat-initiative{margin:8px 0 13px;padding:9px}
+  .combat-initiative-head{align-items:flex-start}
+  .combat-initiative-actions{flex-direction:column;min-width:105px}
+  .combat-initiative-actions button{padding:7px 8px}
+  .initiative-order-item{flex-basis:190px;min-height:50px;grid-template-columns:24px 24px minmax(0,1fr) 30px;padding:7px}
+  .initiative-entity-icon{font-size:16px}
+  .initiative-value{font-size:13px}
+
+/* origem: features.css */
+.combat-section-head{align-items:flex-start;gap:8px}.combat-enemy-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}.combat-enemy-actions button{min-height:38px}.battle-bestiary-picker-panel{width:calc(100vw - 12px);max-height:88vh}.battle-bestiary-row{grid-template-columns:38px minmax(0,1fr)}.battle-bestiary-row>.primary-action{grid-column:1/-1;width:100%}
+
+/* origem: features.css */
+.quick-action-columns{grid-template-columns:1fr}.enemy-detail-stats{grid-template-columns:repeat(3,1fr)}.session-mode-card{align-items:flex-start;flex-direction:column}.combat-card-tools>button,.quick-resource-pop button{min-height:34px}.battle-card.targeted:after{top:4px;right:5px}
+
+/* origem: features.css */
+.manual-action-grid{grid-template-columns:1fr}.manual-action-buttons{display:grid;grid-template-columns:1fr 1fr}.master-overview{padding:8px}.master-overview-grid{grid-template-columns:1fr}.overview-stats{grid-template-columns:repeat(3,1fr)}.overview-attributes{grid-template-columns:repeat(5,1fr)}.master-overview-card{padding:10px}
+
+/* origem: features.css */
+.mini-sheet-stat-grid{grid-template-columns:repeat(4,1fr);gap:4px}.mini-sheet-stat{padding:7px 3px}.mini-sheet-stat strong{font-size:12px}.mini-sheet-skill-row{grid-template-columns:minmax(90px,1fr) 32px 38px 62px;gap:3px;padding-left:4px;padding-right:4px}.mini-sheet-trained{font-size:7px}
+
+/* origem: features.css */
+.enemy-action-editor-row{grid-template-columns:1fr 90px 30px}.enemy-action-effect-field{grid-column:1 / span 2}.enemy-actions-v3{grid-template-columns:1fr}.enemy-hp-buttons{grid-template-columns:repeat(3,1fr)}.enemy-main-actions{display:grid;grid-template-columns:repeat(3,1fr)}.enemy-editor-v3{width:calc(100vw - 12px);max-height:92vh}
+
+/* origem: features.css */
+.standalone-master-page {
+    padding: 9px 6px 24px;
+  }
+
+/* origem: themes.css */
+.theme-toggle-btn {
+    width: 32px;
+    height: 32px;
+    min-height: 32px;
+    padding: 0;
+  }
+  .theme-toggle-label { display: none; }
+  .theme-toggle-icon { font-size: 16px; }
+  .theme-menu {
+    position: fixed;
+    top: auto;
+    left: 8px;
+    right: 8px;
+    bottom: calc(72px + env(safe-area-inset-bottom));
+    width: auto;
+    max-height: min(68vh, 520px);
+    overflow: auto;
+  }
+  .theme-options { grid-template-columns: 1fr; }
+  .theme-option { min-height: 52px; }
+
+/* origem: themes.css */
+.master-center{padding:9px 7px 82px}.master-center-header{align-items:flex-start}.master-center-header p{display:none}.master-center-header .primary-action{padding:7px 9px}.master-center-nav{margin-left:-7px;margin-right:-7px;padding-left:7px;padding-right:7px}.master-dashboard-grid{grid-template-columns:1fr}.master-panel,.master-session-panel,.master-log-panel{grid-column:1}.master-stat-grid{grid-template-columns:repeat(3,1fr)}.master-turn-box{align-items:flex-start;flex-wrap:wrap}.master-turn-box>strong{min-width:50%}.master-turn-box>div{width:100%}.master-turn-box button{flex:1}.master-player-grid,.bestiary-grid,.master-rule-grid{grid-template-columns:1fr}.master-notes-textarea{min-height:55vh}.master-player-resources,.bestiary-stats{grid-template-columns:repeat(4,1fr)}.bestiary-editor{width:min(96vw,520px)}
+
+  /* Livro de Regras V4 */
+  .rule-quick-answer{padding:12px}.rule-quick-answer-head{display:block}.rule-quick-answer-head>button{margin-top:10px;width:100%}.rule-result-grid{grid-template-columns:1fr}.rule-quick-summary{font-size:12px}.rule-result-filters{margin-left:-4px;margin-right:-4px}.rule-quick-related{gap:4px}
+}
+
+/* =========================================================
+   V13 — Navegacao mobile: barra inferior + areas touch-first
+========================================================= */
+@media (max-width: 760px) {
+  #app {
+    overflow: hidden !important;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .app-header {
+    flex: 0 0 auto;
+    padding: 7px 9px !important;
+    background: var(--surface-color, #1a1a24) !important;
+    border-bottom: 1px solid var(--border-soft, rgba(255,255,255,.08));
+  }
+
+  .topbar {
+    min-height: 44px;
+    gap: 8px;
+    align-items: center !important;
+  }
+
+  .header-avatar {
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 10px;
+  }
+
+  .page-title {
+    max-width: 42vw !important;
+    font-size: 15px !important;
+  }
+
+  .user-label {
+    display: none;
+  }
+
+  .topbar-right {
+    gap: 5px;
+    flex-wrap: nowrap !important;
+    align-items: center;
+  }
+
+  .admin-panel {
+    max-width: 118px;
+  }
+
+  .admin-select {
+    width: 100%;
+    max-width: 118px !important;
+    min-height: 36px;
+    font-size: 10px !important;
+  }
+
+  .logout-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0 !important;
+    overflow: hidden;
+    font-size: 0 !important;
+    display: grid;
+    place-items: center;
+  }
+
+  .logout-btn::before {
+    content: "↪";
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  #tabs-nav {
+    position: fixed !important;
+    z-index: 1150;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 6px 6px calc(6px + env(safe-area-inset-bottom, 0px)) !important;
+    border-top: 1px solid var(--border-soft, rgba(255,255,255,.1));
+    background: color-mix(in srgb, var(--surface-color, #1a1a24) 96%, #000);
+    box-shadow: 0 -8px 24px rgba(0,0,0,.28);
+  }
+
+  #tabs-container {
+    display: grid !important;
+    grid-template-columns: repeat(var(--tab-count, 5), minmax(0, 1fr));
+    gap: 2px !important;
+    overflow: visible !important;
+    scrollbar-width: none;
+  }
+
+  #tabs-container::-webkit-scrollbar { display: none; }
+
+  .tab-btn {
+    min-width: 0;
+    min-height: 54px;
+    padding: 5px 2px !important;
+    border-radius: 10px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    font-size: 8px !important;
+    line-height: 1;
+    overflow: hidden;
+  }
+
+  .tab-btn .nav-icon {
+    font-size: 18px;
+    line-height: 1;
+  }
+
+  .tab-btn .nav-label {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: center;
+    opacity: .82;
+  }
+
+  .tab-btn.active {
+    box-shadow: none !important;
+    background: rgba(var(--primary-rgb), .16) !important;
+    color: var(--primary-color, #a78bfa) !important;
+    border-color: rgba(var(--primary-rgb), .28) !important;
+  }
+
+  .tab-btn.active .nav-label { opacity: 1; font-weight: 800; }
+
+  #main-content {
+    min-height: 0;
+    overflow-y: auto !important;
+    overscroll-behavior-y: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 7px calc(78px + env(safe-area-inset-bottom, 0px)) !important;
+    scroll-padding-bottom: 84px;
+  }
+
+  #save-bar {
+    margin-bottom: 68px;
+  }
+
+  .session-document-fab {
+    right: 12px !important;
+    bottom: calc(72px + env(safe-area-inset-bottom, 0px)) !important;
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    box-shadow: 0 8px 22px rgba(0,0,0,.38) !important;
+  }
+
+  /* Central do mestre: secoes internas sem carrossel horizontal infinito. */
+  .master-center-v2 {
+    padding: 7px 4px 24px !important;
+  }
+
+  .master-topbar-v2 {
+    gap: 10px;
+    margin-bottom: 9px;
+    padding: 7px 4px 10px;
+  }
+
+  .master-topbar-v2 h2 { font-size: 22px; }
+  .master-topbar-v2 p { font-size: 10px; }
+
+  .master-app-shell { gap: 9px; }
+
+  .master-side-nav {
+    position: static !important;
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px !important;
+    overflow: visible !important;
+    max-height: none !important;
+    padding: 6px !important;
+    border-radius: 12px !important;
+  }
+
+  .master-side-nav-label,
+  .master-side-nav-divider { display: none !important; }
+
+  .master-side-nav button {
+    min-width: 0 !important;
+    min-height: 46px;
+    padding: 7px 5px !important;
+    text-align: center !important;
+    place-items: center;
+    border: 1px solid transparent !important;
+  }
+
+  .master-side-nav button strong {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 9px !important;
+  }
+
+  .master-side-nav button small { display: none; }
+
+  /* Documento da sessao: drawer realmente mobile, com acoes claras. */
+  .session-doc-drawer {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+  }
+
+  .session-doc-drawer-panel {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+  }
+
+  .session-doc-drawer-panel > header {
+    padding: 9px 10px !important;
+    gap: 7px !important;
+  }
+
+  .session-doc-drawer-panel .section-eyebrow { font-size: 7px; }
+
+  .session-doc-title-input {
+    min-height: 36px;
+    font-size: 15px;
+  }
+
+  .session-doc-header-tools {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px !important;
+  }
+
+  .session-doc-jump {
+    grid-column: 1 / -1;
+    width: 100%;
+    max-width: none !important;
+    min-width: 0 !important;
+    height: 38px;
+  }
+
+  .session-doc-header-tools [data-session-doc-status] {
+    grid-column: 1 / -1;
+    order: 3;
+    margin: 0;
+    min-height: 16px;
+  }
+
+  .session-doc-header-tools button {
+    min-height: 40px;
+    width: 100%;
+  }
+
+  .session-doc-drawer-body {
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  .session-doc-drawer-body .rich-doc-shell {
+    min-height: 100%;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .session-doc-drawer-body .rich-doc-toolbar {
+    top: 0;
+    min-height: 44px;
+    padding: 5px 7px;
+    box-shadow: 0 1px 5px rgba(0,0,0,.08);
+  }
+
+  .session-doc-drawer-body .rich-doc-toolbar button {
+    min-width: 38px;
+    min-height: 36px;
+  }
+
+  .rich-doc-editor-quick {
+    width: 100%;
+    max-width: none !important;
+    min-height: calc(100dvh - 210px) !important;
+    margin: 0 !important;
+    padding: 26px 18px 100px !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    font-size: 16px;
+  }
+
+  /* Biblioteca de documentos: leitura em primeiro plano no celular. */
+  .documents-shell {
+    padding: 4px 2px 18px !important;
+  }
+
+  .documents-hero {
+    padding: 10px !important;
+    border-radius: 11px !important;
+  }
+
+  .documents-hero h1 { font-size: 22px !important; }
+  .documents-hero p { font-size: 10px !important; }
+
+  .documents-toolbar {
+    grid-template-columns: 1fr 1fr !important;
+    position: sticky;
+    top: -1px;
+    z-index: 5;
+    padding: 7px !important;
+  }
+
+  .documents-search { grid-column: 1 / -1 !important; }
+
+  .document-card {
+    padding: 11px !important;
+    border-radius: 11px !important;
+  }
+
+  .document-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .document-actions button {
+    min-height: 42px !important;
+    padding: 8px 7px !important;
+  }
+
+  .documents-workspace.has-preview .documents-preview-pane {
+    min-height: 0 !important;
+  }
+
+  .document-viewer {
+    margin: 0 !important;
+    border-radius: 10px !important;
+  }
+
+  .document-viewer-head {
+    position: sticky !important;
+    top: 0;
+    z-index: 8;
+    padding: 9px 10px !important;
+    align-items: center !important;
+  }
+
+  .document-viewer-title h2 { font-size: 14px !important; }
+  .document-viewer-title p { display: none; }
+
+  .document-viewer-actions {
+    gap: 4px !important;
+  }
+
+  .document-viewer-actions .document-viewer-close {
+    min-width: 112px !important;
+    min-height: 40px !important;
+  }
+
+  .document-viewer-body {
+    min-height: calc(100dvh - 250px) !important;
+    max-height: none !important;
+  }
+
+  .document-docx-preview {
+    min-height: calc(100dvh - 250px) !important;
+    padding: 24px 18px 90px !important;
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+  }
+
+  .document-pdf-preview {
+    height: calc(100dvh - 250px) !important;
+    min-height: 520px !important;
+  }
+}
+
+@media (max-width: 380px) {
+  .tab-btn .nav-label { font-size: 7px; }
+  .tab-btn .nav-icon { font-size: 17px; }
+  .master-side-nav { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .page-title { max-width: 36vw !important; }
+}

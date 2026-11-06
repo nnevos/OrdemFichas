@@ -1,0 +1,10 @@
+const fs=require('fs'),assert=require('assert');
+const d=fs.readFileSync('js/tabletop/combat-dock.js','utf8'),r=fs.readFileSync('js/tabletop/renderer.js','utf8');
+assert.match(d,/persistentPlayerQuickActions/);
+assert.match(d,/AÇÕES RÁPIDAS/);
+assert.match(d,/if\(currentRole!=='admin'\)return `\$\{initiative\}\$\{feedback\}\$\{counterPanel\(\)\}\$\{persistentPlayerQuickActions\(\)\}/);
+assert.match(d,/Disponíveis para consulta/);
+assert.match(d,/reactionPanel\(req\).*persistentPlayerQuickActions\(\)/s);
+assert.match(d,/pendingAction\?pendingPanel\(\):''/);
+assert.match(r,/V15\.(24|25|26|35|38|39|42)/);
+console.log('v15.20 persistent player quick actions ok');

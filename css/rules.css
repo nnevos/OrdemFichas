@@ -1,0 +1,217 @@
+/* =========================================================
+   LIVRO / REGRAS
+========================================================= */
+
+.rules-shell {
+  width: 100%;
+
+  max-width: 1100px;
+
+  margin:
+    0 auto;
+}
+
+.rules-hero {
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    minmax(
+      300px,
+      480px
+    );
+
+  align-items: end;
+
+  gap: 12px;
+
+  padding: 13px;
+}
+
+.rules-help {
+  margin:
+    3px
+    0
+    0;
+
+  font-size: 11px;
+
+  opacity: 0.62;
+}
+
+.rules-search-wrap {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+}
+
+.rules-search {
+  width: 100%;
+
+  padding: 9px 10px;
+
+  border-radius: 8px;
+
+  border:
+    1px solid
+    #4a4a5a;
+
+  background: #15151d;
+
+  color: white;
+
+  outline: none;
+}
+
+.rules-search:focus {
+  border-color: #8b5cf6;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(139, 92, 246, 0.1);
+}
+
+.rules-count {
+  flex-shrink: 0;
+
+  font-size: 9px;
+
+  opacity: 0.55;
+}
+
+.rules-quick-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap: 7px;
+
+  margin:
+    8px
+    0;
+}
+
+.rules-quick-card {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  padding: 9px;
+}
+
+.rules-quick-card strong {
+  color: #c4b5fd;
+
+  font-family:
+    'Orbitron',
+    sans-serif;
+
+  font-size: 10px;
+}
+
+.rules-quick-card span {
+  font-size: 10px;
+
+  line-height: 1.35;
+
+  opacity: 0.7;
+}
+
+.rules-results {
+  display: grid;
+
+  gap: 5px;
+}
+
+.rule-result {
+  display: grid;
+
+  grid-template-columns:
+    27px
+    1fr;
+
+  align-items: start;
+
+  gap: 7px;
+
+  padding: 8px 9px;
+
+  border-radius: 7px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+}
+
+.rule-result p {
+  margin: 0;
+
+  font-size: 11px;
+
+  line-height: 1.45;
+}
+
+.rule-index {
+  width: 23px;
+  height: 23px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 5px;
+
+  background:
+    rgba(139, 92, 246, 0.13);
+
+  color: #a78bfa;
+
+  font-family:
+    'Orbitron',
+    sans-serif;
+
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0);
+  }
+}
+
+.fade-in {
+  animation:
+    fadeIn
+    0.25s
+    ease;
+}
+
+/* Otimização mobile: reduz animações para melhorar performance */

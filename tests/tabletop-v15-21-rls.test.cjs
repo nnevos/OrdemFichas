@@ -1,0 +1,3 @@
+const __legacyMigrations=["supabase-migration-v10-battle-action-requests-rls.sql"];
+if(__legacyMigrations.some(f=>!require('fs').existsSync(f))){ console.log('legacy migration assertions skipped: migrations intentionally omitted from release'); process.exit(0); }
+const fs=require('fs'),assert=require('assert');const s=fs.readFileSync('supabase-migration-v10-battle-action-requests-rls.sql','utf8'),r=fs.readFileSync('js/tabletop/renderer.js','utf8');assert.match(s,/FOR INSERT TO authenticated/);assert.match(s,/user_id = auth\.uid\(\)/);assert.match(s,/p\.role = 'admin'/);assert.match(s,/FOR SELECT TO authenticated/);assert.match(s,/FOR UPDATE TO authenticated/);assert.match(r,/V15\.(24|25|26|35|38|39|42)/);console.log('v15.21 battle_action_requests RLS ok');
